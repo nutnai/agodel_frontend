@@ -1,6 +1,6 @@
 import Header from "../../resource/components/header";
 
-export default function Home() {
+export default function Resetpassword() {
   return (
     <>
       <Header />

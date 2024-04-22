@@ -1,6 +1,6 @@
 import Header from "../../resource/components/header";
 
-export default function Home() {
+export default function Signup() {
   return (
     <>
       <Header />
@@ -27,17 +27,17 @@ export default function Home() {
               >
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Email address
+                    Username
                   </label>
                   <div className="mt-1">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="username"
+                      name="username"
+                      type="text"
+                      autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
@@ -84,15 +84,33 @@ export default function Home() {
 
                 <div>
                   <label
-                    htmlFor="name"
+                    htmlFor="fname"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Name
+                    First Name
                   </label>
                   <div className="mt-1">
                     <input
-                      id="name"
-                      name="name"
+                      id="fname"
+                      name="fname"
+                      type="text"
+                      autoComplete="current-password"
+                      required
+                      className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="lname"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Last Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="lname"
+                      name="lname"
                       type="text"
                       autoComplete="current-password"
                       required
@@ -119,7 +137,24 @@ export default function Home() {
                     />
                   </div>
                 </div>
-
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email address
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
                 <div className="flex gap-2">
                   <button
                     type="submit"

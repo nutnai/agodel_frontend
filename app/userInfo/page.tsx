@@ -1,13 +1,22 @@
 import Header from "../../resource/components/header";
 
-export default function Home() {
+export default function Userinfo() {
   return (
     <>
       <Header />
       <div className="mx-auto p-4 min-h-screen bg-white w-full px-40  ">
       <div className="border-solid rounded-lg border-8 border-yellow-200 p-5 mt-5">
-      <h1 className="text-2xl font-semibold mb-4">Edit Profile</h1>
+      <h1 className="text-2xl font-semibold mb-4">User information</h1>
       <form >
+      <div className="mb-4">
+          <label htmlFor="username" className="block text-gray-600 mb-1">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
+          />
+        </div>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-600 mb-1">First Name:</label>
           <input
@@ -45,19 +54,12 @@ export default function Home() {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
           />
         </div>
-        <div className="mb-4">
-          <label htmlFor="address" className="block text-gray-600 mb-1">Address:</label>
-          <textarea
-            id="address"
-            name="address"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
-          ></textarea>
-        </div>
+        
         <button
           type="submit"
           className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
         >
-          Save Changes
+          edit
         </button>
       </form>
       </div>
