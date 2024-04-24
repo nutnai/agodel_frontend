@@ -6,6 +6,7 @@ import FavoriteButton from '../components/favbutton';
 import ReservedButton from '../components/reservebutton';
 import PictureBox from '../components/hotelpicture';
 import HotelDetail from '../components/hoteldetail';
+import PopUp from '../components/popup';
 import React, { useState } from 'react';
 
 
