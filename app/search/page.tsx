@@ -1,4 +1,4 @@
-import Placesearch from "../../resource/components/placeSearch";
+import Placesearch from "../components/placeSearch";
 export default function Search() {
   const hotels = [
     {

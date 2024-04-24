@@ -4,7 +4,7 @@ import Header from "../components/header";
 import BorderBox from "../components/borderbox";
 import YellowBox from "../components/yellowbox";
 import Footer from "../components/footer";
-import Placesearch from "@/resource/components/placeSearch";
+import Placesearch from "@/app/components/placeSearch";
 import SidebarCustomer from "../components/sidebarcustomer";
 import SidebarOwner from "../components/sidebarOwner";
 import ReservedButton from "../components/reservebutton";

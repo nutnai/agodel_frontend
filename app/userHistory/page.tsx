@@ -1,4 +1,4 @@
-import Placesearch from "../../resource/components/placeSearch";
+import Placesearch from "../components/placeSearch";
 import Header from "../components/headerLoggedIn";
 export default function History() {
   const hotels = [

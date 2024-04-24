@@ -1,4 +1,4 @@
-import Reciptsearch from "@/resource/components/receiptSearch";
+import Reciptsearch from '../components/receiptSearch';
 import Header from '../components/headerLoggedIn';
 import Footer from '../components/footer';
 export default function Booked() {

@@ -1,6 +1,6 @@
 import SidebarCustomer from "@/resource/components/sidebarCustomer";
 import SidebarOwner from "@/resource/components/sidebarOwner";
-import Reciptsearch from "@/resource/components/receiptSearch";
+import Reciptsearch from "../components/receiptSearch";
 export default function History() {
   return (
     <>
