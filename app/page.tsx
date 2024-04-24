@@ -4,8 +4,7 @@ import Reciptsearch from "@/resource/components/receiptSearch";
 export default function Dashboard() {
   return (
     <>
-      <div className="min-h-screen bg-white">
-      </div>
+    <SidebarOwner/>
     </>
   );
 }
