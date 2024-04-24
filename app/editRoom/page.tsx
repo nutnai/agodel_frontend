@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Editroom() {
   return (
     <>
       <div className="min-h-screen bg-white">
