@@ -23,11 +23,11 @@ export default function Booked() {
         <Reciptsearch/>
         <div className="max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="flex">
-            <div className="w-1/3">
+            <div className="w-1/3 py-4 px-4">
               <img
-                src="your-image-url.jpg"
+                src="https://f.ptcdn.info/973/041/000/o5ywjwbf9S1Ptz4IGn7-o.jpg"
                 alt="Hotel"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-md"
               />
             </div>
             <div className="w-2/3 p-6">
@@ -37,7 +37,7 @@ export default function Booked() {
                     Username:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    Patcaharapol Sohheng
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -45,7 +45,7 @@ export default function Booked() {
                     Room NO.:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    401
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -53,7 +53,7 @@ export default function Booked() {
                     Date Start:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                  20/5/2024
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -61,7 +61,7 @@ export default function Booked() {
                     Status:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    -
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -69,7 +69,7 @@ export default function Booked() {
                     Date end:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    22/5/2024
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -77,7 +77,7 @@ export default function Booked() {
                     etc.:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    -
                   </p>
                 </div>
               </div>

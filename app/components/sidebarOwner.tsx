@@ -5,6 +5,7 @@ import Booked from "../booked/page";
 import Editroom from "../editRoom/page";
 import History from "../history/page";
 import Dashboard from "../dashboard/page";
+import Footer from "./footer";
 const SidebarOwner = () => {
   const [currentPage, setCurrentPage] =
     useState<string>("page0");
@@ -13,9 +14,10 @@ const SidebarOwner = () => {
     setCurrentPage(pageId);
   };
   return (
+    <>
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-64 h-screen bg-blue-500 shadow-md p-4 flex flex-col">
+      <div className="w-64  bg-blue-900 h-screen shadow-md p-4 flex flex-col">
         {/* Picture of customer */}
         <div className="w-12 h-12 bg-gray-200 rounded-full mb-8"></div>
 
@@ -24,7 +26,7 @@ const SidebarOwner = () => {
           onClick={() =>
             showPage("pageDashboard")
           }
-          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-500 rounded-md"
+          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-300 rounded-md"
         >
           Dashboard
         </button>
@@ -32,7 +34,7 @@ const SidebarOwner = () => {
           onClick={() =>
             showPage("pageBooked")
           }
-          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-500 rounded-md"
+          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-300 rounded-md"
         >
           Booked
         </button>
@@ -40,7 +42,7 @@ const SidebarOwner = () => {
           onClick={() =>
             showPage("pageInfo")
           }
-          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-500 rounded-md"
+          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-300 rounded-md"
         >
           Information
         </button>
@@ -48,7 +50,7 @@ const SidebarOwner = () => {
           onClick={() =>
             showPage("pageEdit")
           }
-          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-500 rounded-md"
+          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-300 rounded-md"
         >
           Edit room
         </button>
@@ -56,12 +58,12 @@ const SidebarOwner = () => {
           onClick={() =>
             showPage("pageHistory")
           }
-          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-500 rounded-md"
+          className="w-full py-2 px-4 mb-6 text-left bg-white hover:bg-gray-300 rounded-md"
         >
           History
         </button>
         {/* Sign out button */}
-        <button className="w-full py-2 px-4 text-left bg-white hover:bg-gray-500 rounded-md">
+        <button className="w-full py-2 px-4 text-left bg-white hover:bg-gray-300 rounded-md">
           Sign out
         </button>
       </div>
@@ -142,6 +144,8 @@ const SidebarOwner = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

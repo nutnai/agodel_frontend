@@ -16,7 +16,7 @@ export default function Signup() {
             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
               <a href="/signin">
                 <div className="text-center mb-2">
-                  <button className="mb-2 w-auto">
+                  <button className="mb-2 w-auto underline">
                     Back to signin
                   </button>
                 </div>
@@ -168,8 +168,9 @@ export default function Signup() {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
-      <Footer/>
+      
     </>
   );
 }

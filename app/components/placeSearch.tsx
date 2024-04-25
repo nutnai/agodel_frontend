@@ -1,8 +1,8 @@
 export default function Placesearch() {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-10">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-indigo-700 p-6 rounded-lg shadow-md w-auto">
+            <div className="bg-blue-900 p-6 rounded-lg shadow-md w-auto">
               <form className="flex flex-row sm:flex-nowrap items-center gap-4">
                 <div className="flex flex-col sm:flex-nowrap items-center gap-4">
                   <div className="grid grid-cols-4 gap-6">
@@ -125,7 +125,7 @@ export default function Placesearch() {
                 <div className="w-full sm:w-auto">
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600"
+                    className="bg-yellow-300 text-black font-semibold py-2 px-4 rounded-md hover:bg-yellow-400"
                   >
                     Search
                   </button>

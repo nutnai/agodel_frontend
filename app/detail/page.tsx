@@ -33,7 +33,7 @@ const Detail = () => {
       <Header />
       <div className='flex justify-between'>
         <div className='ml-24 mt-8 text-xl font-semibold text-gray-900'>
-          RongRam HaDao
+          Awesome Hotel
           <RatingStarBar rating={productRating} onChange={handleRatingChange} />
         </div>
         <div className='flex justify-evenly w-60 mt-5 mr-12'>
@@ -42,7 +42,9 @@ const Detail = () => {
         </div>
       </div>
       <PictureBox images={images} />
-      <HotelDetail location='PanDinThai' facilities={['PraToo', 'NaTang', 'TeeSheedTude', 'VeryBigSraWaiNam','NiruchFather']} guests={[1, 2, 3, 4]} prices={[2000, 3500, 4800,6200]} />
+      <HotelDetail  location='Thailand, Bangkok, Awesome Hotel' 
+                    facilities={['Swimming Pool', 'Breakfast', 'Spa', 'Fitness','Coworking Areas']} 
+                    guests={[1, 2, 3, 4]} prices={[2000, 3500, 4800,6200]} />
       <Footer />
     </div>
   );

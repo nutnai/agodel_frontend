@@ -1,9 +1,9 @@
 // components/Header.js
 import React from 'react';
 
-const Header = () => {
+const HeaderLoggedIn = () => {
   return (
-    <header className="bg-blue-500 py-6 text-white flex justify-between">
+    <header className="bg-blue-900 py-6 text-white flex justify-between">
       <div className="container">
       <a href="/">
         <h1 className="text-3xl font-bold ml-7">Agodel</h1>
@@ -15,10 +15,10 @@ const Header = () => {
           alt="Profile Picture"
           className="w-10 h-10 rounded-full mr-2"
         />
-        <span className="text-white text-lg font-semibold">Username</span>
+        <span className="text-white text-lg font-semibold">Owner</span>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default HeaderLoggedIn;

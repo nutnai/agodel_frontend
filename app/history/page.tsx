@@ -1,5 +1,3 @@
-import SidebarCustomer from "@/resource/components/sidebarCustomer";
-import SidebarOwner from "@/resource/components/sidebarOwner";
 import Reciptsearch from "../components/receiptSearch";
 export default function History() {
   return (
@@ -8,11 +6,11 @@ export default function History() {
         <Reciptsearch/>
         <div className="max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="flex">
-            <div className="w-1/3">
+            <div className="w-1/3 py-4 px-4">
               <img
-                src="your-image-url.jpg"
+                src="https://f.ptcdn.info/973/041/000/o5ywjwbf9S1Ptz4IGn7-o.jpg"
                 alt="Hotel"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-md"
               />
             </div>
             <div className="w-2/3 p-6">
@@ -22,7 +20,7 @@ export default function History() {
                     Username:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    Patcharapol Sohheng
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -30,7 +28,7 @@ export default function History() {
                     Room NO.:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    401
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -38,7 +36,7 @@ export default function History() {
                     Date Start:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    20/5/2024
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -46,7 +44,7 @@ export default function History() {
                     Status:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    -
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -54,7 +52,7 @@ export default function History() {
                     Date end:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    22/5/2024
                   </p>
                 </div>
                 <div className="col-span-1">
@@ -62,7 +60,71 @@ export default function History() {
                     etc.:
                   </p>
                   <p className="text-lg font-semibold text-gray-800">
-                    xxx
+                    -
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-20">
+          <div className="flex">
+            <div className="w-1/3 py-4 px-4">
+              <img
+                src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/241160563.jpg?k=9baa5849c66ff7543e4b594ac910e86c0b0c0c2e661808732a7dff82663c0a9f&o=&hp=1"
+                alt="Hotel"
+                className="w-full h-full object-cover rounded-md"
+              />
+            </div>
+            <div className="w-2/3 p-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    Username:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    Jiraphit Srisan
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    Room NO.:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    309
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    Date Start:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    4/3/2024
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    Status:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    -
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    Date end:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    5/3/2024
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-medium text-gray-600">
+                    etc.:
+                  </p>
+                  <p className="text-lg font-semibold text-gray-800">
+                    -
                   </p>
                 </div>
               </div>

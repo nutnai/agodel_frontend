@@ -14,7 +14,7 @@ const SidebarCustomer = () => {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-64 h-screen bg-blue-500 shadow-md p-4 flex flex-col">
+      <div className="w-64 h-screen bg-blue-900 shadow-md p-4 flex flex-col">
         {/* Picture of customer */}
         <div className="w-12 h-12 bg-gray-200 rounded-full mb-8"></div>
 
