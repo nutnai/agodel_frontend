@@ -1,6 +1,9 @@
+import Header from "../components/header";
+import Footer from "../components/footer";
 export default function Signup() {
   return (
     <>
+    <Header/>
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -11,12 +14,13 @@ export default function Signup() {
 
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
-              <div className="text-center mb-2">
-                <button className="mb-2 w-auto">
-                  Back to signin
-                </button>
-              </div>
-
+              <a href="/signin">
+                <div className="text-center mb-2">
+                  <button className="mb-2 w-auto">
+                    Back to signin
+                  </button>
+                </div>
+              </a>
               <form
                 className="space-y-6"
                 action="#"
@@ -165,6 +169,7 @@ export default function Signup() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

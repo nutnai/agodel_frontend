@@ -1,5 +1,4 @@
 import Placesearch from "../components/placeSearch";
-import Header from "../components/headerLoggedIn";
 export default function Favorite() {
   const hotels = [
     {
@@ -24,8 +23,7 @@ export default function Favorite() {
   ];
   return (
     <>
-        <Header />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white px-8">
         <Placesearch />
        
 

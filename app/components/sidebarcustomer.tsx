@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Userinfo from "../userInfo/page";
+import MyBook from "../myBook/page";
+import Userhistory from "../userHistory/page";
+import Favorite from "../favorite/page";
 const SidebarCustomer = () => {
   const [currentPage, setCurrentPage] =
     useState<string>("page0");
@@ -86,7 +89,7 @@ const SidebarCustomer = () => {
         >
           <div className="flex items-center justify-center bg-gray-900 bg-opacity-0">
             <div className="bg-white   w-full h-screen rounded-lg shadow-lg">
-              <Userinfo />
+              <MyBook />
             </div>
           </div>
         </div>
@@ -101,7 +104,7 @@ const SidebarCustomer = () => {
         >
           <div className="flex items-center justify-center bg-gray-900 bg-opacity-0">
             <div className="bg-white   w-full h-screen rounded-lg shadow-lg">
-              <Userinfo />
+              <Userhistory />
             </div>
           </div>
         </div>
@@ -115,7 +118,7 @@ const SidebarCustomer = () => {
         >
           <div className="flex items-center justify-center bg-gray-900 bg-opacity-0">
             <div className="bg-white  w-full h-screen rounded-lg shadow-lg">
-              <Userinfo />
+              <Favorite />
             </div>
           </div>
         </div>

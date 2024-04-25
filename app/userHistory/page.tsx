@@ -1,6 +1,5 @@
 import Placesearch from "../components/placeSearch";
-import Header from "../components/headerLoggedIn";
-export default function History() {
+export default function Userhistory() {
   const hotels = [
     {
       id: 1,
@@ -24,8 +23,7 @@ export default function History() {
   ];
   return (
     <>
-        <Header />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white px-8">
         <Placesearch />
        
 

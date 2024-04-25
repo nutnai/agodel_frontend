@@ -18,7 +18,7 @@ const Home = () => {
     <div>
       <Header />
       <div>
-        <SidebarOwner />
+        <SidebarCustomer   />
       </div>
       <Footer />
     </div>

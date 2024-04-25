@@ -1,6 +1,9 @@
+import Header from "../components/header";
+import Footer from "../components/footer";
 export default function Forgetpassword() {
   return (
     <>
+    <Header/>
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -44,15 +47,18 @@ export default function Forgetpassword() {
                   </button>
                 </div>
               </form>
-              <div className="text-center mt-2">
-                <button className="mt-2 w-auto">
-                  Back to signin
-                </button>
-              </div>
+              <a href="/signin">
+                <div className="text-center mt-2">
+                  <button className="mt-2 w-auto">
+                    Back to signin
+                  </button> 
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

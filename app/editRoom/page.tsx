@@ -1,7 +1,7 @@
 export default function Editroom() {
   return (
     <>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white px-8">
         <div className="container mx-auto px-4 py-8 flex">
           <div className="max-w-4xl mx-auto">
             <div className="bg-blue-400 p-6 rounded-lg shadow-md">

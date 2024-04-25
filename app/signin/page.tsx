@@ -1,5 +1,6 @@
 "use client";
-
+import Header from "../components/header";
+import Footer from "../components/footer";
 import {
   useState,
   useEffect,
@@ -52,6 +53,7 @@ export default function Signin() {
   }
   return (
     <>
+    <Header/>
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -112,12 +114,14 @@ export default function Signin() {
                     />
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-1  text-sm font-medium text-gray-400 underline hover:text-gray-600"
-                >
-                  Forget password ?
-                </button>
+                <a href="/forgetPassword">
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center py-1 mt-4  text-sm font-medium text-gray-400 underline hover:text-gray-600"
+                  >
+                    Forget password ?
+                  </button>
+                </a>
                 <div className="flex-row justify-center items-center">
                   <button
                     type="submit"
@@ -127,17 +131,20 @@ export default function Signin() {
                     Login
                   </button>
                 </div>
+                <a href="/signup">
                 <button
                   type="submit"
                   className=" flex justify-center py-2 px-4 w-full border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-300 hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Sign up
                 </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
