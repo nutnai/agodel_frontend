@@ -9,10 +9,10 @@ export default function Booked() {
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between py-6">
               <div className="flex space-x-4">
-                <button className="text-gray-800 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 bg-blue-400 p-4 border rounded-md hover:bg-indigo-700">
+                <button className="text-white font-medium hover:text-white focus:outline-none focus:text-gray-900 bg-blue-900 p-4 border rounded-md hover:bg-blue-800">
                   New
                 </button>
-                <button className="text-gray-800 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 bg-blue-400 p-4 border rounded-md hover:bg-indigo-700">
+                <button className="text-white font-medium hover:text-white focus:outline-none focus:text-gray-900 bg-blue-900 p-4 border rounded-md hover:bg-blue-800">
                   Wait Checkin
                 </button>
               </div>

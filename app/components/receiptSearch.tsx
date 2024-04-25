@@ -2,7 +2,7 @@ export default function Reciptsearch() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-indigo-700 p-6 rounded-lg shadow-md">
+        <div className="bg-blue-900 p-6 rounded-lg shadow-md">
           <form className="flex flex-wrap sm:flex-nowrap items-center px-4 justify-between">
             <div className="flex flex-wrap sm:flex-nowrap gap-8 mr-4  ">
               <div className="w-full sm:w-auto">
@@ -77,7 +77,7 @@ export default function Reciptsearch() {
             <div className="w-full sm:w-auto ml-3 ">
               <button
                 type="submit"
-                className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600"
+                className="bg-yellow-300 text-black font-semibold py-2 px-4 rounded-md hover:bg-yellow-400"
               >
                 Search
               </button>

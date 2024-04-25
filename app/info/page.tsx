@@ -18,7 +18,7 @@ const Home = () => {
     <div>
       <HeaderLoggedIn/>
       <div>
-        <SidebarCustomer   />
+        <SidebarOwner   />
       </div>
       
     </div>
