@@ -1,10 +1,19 @@
 
 "use client";
+import React,{useState,useEffect} from "react";
 import Header from './components/header';
+import HeaderLoggedIn from './components/headerLoggedIn';
 import YellowBox from './components/yellowbox';
 import Footer from './components/footer';
 import Placesearch from "@/app/components/placeSearch";
 const Home = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    // Check if user is logged in when component mounts
+    if (localStorage.getItem('login') === 'login') {
+      setIsLoggedIn(true);
+    }
+  }, []);
   async function test(){
     const res = await fetch('picked-lab-guided.ngrok-free.app/user/1');
     console.log(res.body);
@@ -36,7 +45,8 @@ const Home = () => {
 
   return (
     <div className='bg-white flex flex-col min-h-screen'>
-      <Header />
+      {isLoggedIn && <HeaderLoggedIn />}
+      {!isLoggedIn && <Header />}
       <Placesearch />
       <div className='p-8'>
         {/* <button onClick={test}>Test</button> */}
@@ -53,7 +63,7 @@ const Home = () => {
       ))}
     </div>
       </div>
-
+    
           
       <Footer />
     </div>

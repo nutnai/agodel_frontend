@@ -3,7 +3,7 @@ module.exports = {
       return [
         {
           source: '/api/:path*',
-          destination: process.env.AGODEL_BACKEND_SERVER+'/:path*', 
+          destination: process.env.AGODEL_BACKEND_URL+'/:path*', 
         },
       ];
     },
