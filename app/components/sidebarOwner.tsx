@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Placeinfo from "../placeInfo/page";
 import Booked from "../booked/page";
 import Editroom from "../editRoom/page";
@@ -8,11 +8,16 @@ import Dashboard from "../dashboard/page";
 import Footer from "./footer";
 const SidebarOwner = () => {
   const [currentPage, setCurrentPage] =
-    useState<string>("page0");
+    useState<string>("pageDashboard");
 
   const showPage = (pageId: string) => {
     setCurrentPage(pageId);
   };
+  const signout = () => {
+    localStorage.removeItem("login");
+    window.location.href = "/";
+  };
+  
   return (
     <>
     <div className="flex">
@@ -63,7 +68,7 @@ const SidebarOwner = () => {
           History
         </button>
         {/* Sign out button */}
-        <button className="w-full py-2 px-4 text-left bg-white hover:bg-gray-300 rounded-md">
+        <button onClick={signout} className="w-full py-2 px-4 text-left bg-white hover:bg-gray-300 rounded-md">
           Sign out
         </button>
       </div>

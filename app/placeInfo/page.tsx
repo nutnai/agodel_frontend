@@ -11,6 +11,12 @@ export default function Placeinfo() {
     setIsEditable(false);
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const toggleSwitch = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <>
       <div className="mx-auto p-4 min-h-screen bg-white w-full px-40  ">
@@ -55,13 +61,27 @@ export default function Placeinfo() {
               >
                 Publish,Private:
               </label>
-              <input
-                type="text"
-                id="publish,private"
-                name="publish,private"
-                readOnly={!isEditable}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
-              />
+              <label htmlFor="toggleSwitch" className="flex items-center cursor-pointer">
+        <div className="relative">
+          <input
+            type="checkbox"
+            id="toggleSwitch"
+            className="sr-only"
+            checked={isChecked}
+            onChange={toggleSwitch}
+          />
+          <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+          <div
+            className={`absolute left-0 bg-white w-6 h-6 rounded-full shadow transition-transform duration-300 transform ${
+              isChecked ? 'translate-x-full' : ''
+            }`}
+          ></div>
+        </div>
+        <div className="ml-3 text-gray-700 font-medium">Switch Button</div>
+      </label>
+            
+        
+         
             </div>
             <div className="mb-4">
               <label

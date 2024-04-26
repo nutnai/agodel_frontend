@@ -30,7 +30,7 @@ export default function Signin() {
 
     try {
       const response = await fetch(
-        "/api/signin",
+        "/api/user/login",
         {
           method: "POST",
           headers: {
@@ -43,7 +43,11 @@ export default function Signin() {
           }),
         }
       );
-
+      if (response.ok) {
+        console.log("Login success");
+        window.location.href = "/";
+        localStorage.setItem("login","login")
+      }
       if (!response.ok) {
         throw new Error("Login failed");
       }

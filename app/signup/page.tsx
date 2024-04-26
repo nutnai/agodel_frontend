@@ -1,9 +1,44 @@
+"use client";
+
+import React, {
+  useEffect,
+  useState,
+} from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import SignupModel from "./signupModel";
+
+const signupModel = new SignupModel();
 export default function Signup() {
+  const [formData, setFormData] =
+    useState(signupModel.getFormData());
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    await signupModel.signup();
+  };
+  useEffect(() => {
+    signupModel.formData.type = "customer";
+  })
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    signupModel.setFormData(
+      name as keyof (typeof signupModel)["formData"],
+      value
+    );
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(signupModel.getFormData());
   return (
     <>
-    <Header/>
+      <Header />
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -23,8 +58,7 @@ export default function Signup() {
               </a>
               <form
                 className="space-y-6"
-                action="#"
-                method="POST"
+                onSubmit={handleSubmit}
               >
                 <div>
                   <label
@@ -38,6 +72,14 @@ export default function Signup() {
                       id="username"
                       name="username"
                       type="text"
+                      value={
+                        signupModel
+                          .formData
+                          .username
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -57,14 +99,23 @@ export default function Signup() {
                       id="password"
                       name="password"
                       type="password"
+                      value={
+                        signupModel
+                          .formData
+                          .password
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
+                
 
-                <div>
+                {/* <div>
                   <label
                     htmlFor="confirmpassword"
                     className="block text-sm font-medium text-gray-700"
@@ -76,6 +127,14 @@ export default function Signup() {
                       id="confirmpassword"
                       name="confirmpassword"
                       type="password"
+                      value={
+                        signupModel
+                          .formData
+                          .confirmPassword
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -95,6 +154,14 @@ export default function Signup() {
                       id="fname"
                       name="fname"
                       type="text"
+                      value={
+                        signupModel
+                          .formData
+                          .firstName
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -113,6 +180,14 @@ export default function Signup() {
                       id="lname"
                       name="lname"
                       type="text"
+                      value={
+                        signupModel
+                          .formData
+                          .lastName
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -132,6 +207,14 @@ export default function Signup() {
                       id="tel"
                       name="tel"
                       type="text"
+                      value={
+                        signupModel
+                          .formData
+                          .telephone
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="current-password"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -150,12 +233,20 @@ export default function Signup() {
                       id="email"
                       name="email"
                       type="email"
+                      value={
+                        signupModel
+                          .formData
+                          .email
+                      }
+                      onChange={
+                        handleChange
+                      }
                       autoComplete="email"
                       required
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-900 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="flex gap-2">
                   <button
                     type="submit"
@@ -168,9 +259,8 @@ export default function Signup() {
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
-      
     </>
   );
 }
