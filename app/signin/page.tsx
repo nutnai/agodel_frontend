@@ -6,7 +6,13 @@ import {
   useEffect,
 } from "react";
 export default function Signin() {
-  const [email, setEmail] =
+  const customerClick = () => {
+    localStorage.setItem(
+      "role",
+      "customer"
+    );
+  };
+  const [username, setUsername] =
     useState("");
   const [password, setPassword] =
     useState("");
@@ -38,15 +44,42 @@ export default function Signin() {
               "application/json",
           },
           body: JSON.stringify({
-            email: email,
+            username: username,
             password: password,
           }),
         }
       );
       if (response.ok) {
         console.log("Login success");
+        const data = await response.json();
+        console.log(data);
+        console.log(typeof data);
+        localStorage.setItem("login", "login");
+        localStorage.setItem(
+          "id",
+          data
+        );
+        if (typeof data === 'number') {
+          const dataString = data.toString();
+          if (dataString.charAt(0) === "1") {
+            localStorage.setItem(
+              "role",
+              "customer"
+            );
+          } else if (dataString.charAt(0) === "2") {
+            localStorage.setItem(
+              "role",
+              "owner"
+            );
+          }
+        } else {
+          console.error("Data is not in the expected format or is empty.");
+        }
+        
+        
         window.location.href = "/";
-        localStorage.setItem("login","login")
+        
+       
       }
       if (!response.ok) {
         throw new Error("Login failed");
@@ -57,7 +90,7 @@ export default function Signin() {
   }
   return (
     <>
-    <Header/>
+      <Header />
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 mb-24">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -71,20 +104,20 @@ export default function Signin() {
               <div className="space-y-6 ">
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Email address
+                    Username
                   </label>
                   <div className="mt-1">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
+                      id="username"
+                      name="username"
+                      type="text"
                       autoComplete="email"
-                      value={email}
+                      value={username}
                       onChange={(e) =>
-                        setEmail(
+                        setUsername(
                           e.target.value
                         )
                       }
@@ -136,19 +169,22 @@ export default function Signin() {
                   </button>
                 </div>
                 <a href="/signup">
-                <button
-                  type="submit"
-                  className=" flex justify-center py-2 px-4 w-full border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Sign up
-                </button>
+                  <button
+                    onClick={
+                      customerClick
+                    }
+                    type="submit"
+                    className=" flex justify-center py-2 px-4 w-full border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Sign up
+                  </button>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

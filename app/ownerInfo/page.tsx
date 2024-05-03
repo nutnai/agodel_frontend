@@ -1,10 +1,11 @@
+"use client";
 import React, {
   useState,
   useEffect,
 } from "react";
 
-export default function Userinfo() {
-  const [customer, setCustomer] =
+export default function Ownerinfo() {
+  const [owner, setOwner] =
     useState({
       firstname: "",
       lastname: "",
@@ -12,8 +13,8 @@ export default function Userinfo() {
       phone: ""
     });
   const [
-    editableCustomer,
-    setEditableCustomer,
+    editableOwner,
+    setEditableOwner,
   ] = useState({firstname: "",
   lastname: "",
   email: "",
@@ -23,7 +24,7 @@ export default function Userinfo() {
     const fetchUsername = async () => {
       try {
         const response = await fetch(
-          "/api/user/getCustomer",
+          "/api/user/getOwner",
           {
             method: "POST",
             headers: {
@@ -31,7 +32,7 @@ export default function Userinfo() {
                 "application/json",
             },
             body: JSON.stringify({
-              customerId: id,
+              ownerId: id,
             }),
           }
         );
@@ -43,8 +44,8 @@ export default function Userinfo() {
         const data =
           await response.json();
         console.log(data);
-        setCustomer(data);
-        setEditableCustomer(data);
+        setOwner(data);
+        setEditableOwner(data);
       } catch (error) {
         console.error(
           "Error fetching username:",
@@ -65,7 +66,7 @@ export default function Userinfo() {
 
   const handleCancel = () => {
     setIsEditable(false);
-    setEditableCustomer(customer);
+    setEditableOwner(owner);
   };
   console.log(isEditable);
   const handleSubmit = async (
@@ -73,10 +74,10 @@ export default function Userinfo() {
   ) => {
     e.preventDefault();
     setIsEditable(false);
-    setCustomer(editableCustomer); // Disable edit mode after saving
+    setOwner(editableOwner); // Disable edit mode after saving
     try {
       const response = await fetch(
-        "/api/user/editCustomer",
+        "/api/user/editOwner",
         {
           method: "POST",
           headers: {
@@ -84,16 +85,18 @@ export default function Userinfo() {
               "application/json",
           },
           body: JSON.stringify({
-            customerId: id,
-            newFirstName: editableCustomer.firstname,
-            newLastName:editableCustomer.lastname,
-            newPhone:editableCustomer.phone,
-            newEmail:editableCustomer.email
+            ownerId: id,
+            newFirstName: editableOwner.firstname,
+            newLastName:editableOwner.lastname,
+            newPhone:editableOwner.phone,
+            newEmail:editableOwner.email
           }),
         }
+        
       );
       console.log(response)
       alert("data has updated");
+      window.location.reload();
       console.log("Data sent successfully:", response);
     } catch (error) {
       console.error("Error sending data:", error);
@@ -101,18 +104,18 @@ export default function Userinfo() {
     // For example, send a PATCH or PUT request to update the customer info
   };
   const handleChange = (e:any) => {
-    setEditableCustomer({
-      ...editableCustomer,
+    setEditableOwner({
+      ...editableOwner,
       [e.target.name]: e.target.value,
     });
-    console.log("Editable Customer:", editableCustomer);
+    console.log("Editable Owner:", editableOwner);
   };
   return (
     <>
       <div className="mx-auto p-4 min-h-screen bg-white w-full px-40">
         <div className="border-solid rounded-lg border-8 border-yellow-200 p-5 mt-5">
           <h1 className="text-2xl font-semibold mb-4">
-            User information
+            Owner information
           </h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -146,7 +149,7 @@ export default function Userinfo() {
                 name="firstname"
                 onChange={handleChange}
                 value={
-                  editableCustomer.firstname|| ""
+                  editableOwner.firstname|| ""
                 }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -163,7 +166,7 @@ export default function Userinfo() {
                 type="text"
                 id="lastname"
                 name="lastname"
-                value={editableCustomer.lastname || ""}
+                value={editableOwner.lastname || ""}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -180,7 +183,7 @@ export default function Userinfo() {
                 type="email"
                 id="email"
                 name="email"
-                value={editableCustomer.email || ""}
+                value={editableOwner.email || ""}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable} // Toggle readOnly based on isEditable state
@@ -197,7 +200,7 @@ export default function Userinfo() {
                 type="text"
                 id="phone"
                 name="phone"
-                value={editableCustomer.phone || ""}
+                value={editableOwner.phone || ""}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}

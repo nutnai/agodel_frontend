@@ -10,18 +10,63 @@ import SignupModel from "./signupModel";
 
 const signupModel = new SignupModel();
 export default function Signup() {
+  const [
+    passwordMatch,
+    setPasswordMatch,
+  ] = useState(true);
   const [formData, setFormData] =
     useState(signupModel.getFormData());
 
+  const [role, setRole] =
+    useState(true);
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+    if (
+      formData.password !==
+      formData.confirmpassword
+    ) {
+      setPasswordMatch(false);
+      return; // Prevent form submission
+    }
     await signupModel.signup();
   };
+  
   useEffect(() => {
-    signupModel.formData.type = "customer";
-  })
+    if (
+      localStorage.getItem("role") ===
+      "owner"
+    ) {
+      signupModel.formData.type =
+        "owner";
+      setRole(false);
+    }
+    if (
+      localStorage.getItem("role") ===
+      "cutomer"
+    ) {
+      signupModel.formData.type = "customer";
+      setRole(true);
+    }
+  });
+useEffect(() => {
+    if (
+      localStorage.getItem("role") ===
+      "owner"
+    ) {
+      signupModel.formData.type =
+        "owner";
+      setRole(false);
+    }
+    if (
+      localStorage.getItem("role") ===
+      "customer"
+    ) {
+      signupModel.formData.type = "customer";
+      setRole(true);
+    }
+  }); 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -34,8 +79,9 @@ export default function Signup() {
       ...formData,
       [name]: value,
     });
+    setPasswordMatch(true);
   };
-  console.log(signupModel.getFormData());
+  console.log(signupModel.formData);
   return (
     <>
       <Header />
@@ -45,6 +91,18 @@ export default function Signup() {
             <h2 className="ml-5 text-center text-3xl font-extrabold text-gray-900">
               Sign up your account
             </h2>
+            {role && (
+              <p className="ml-5 text-center text-3xl font-extrabold text-gray-900">
+                {" "}
+                for customer
+              </p>
+            )}
+            {!role && (
+              <p className="ml-5 text-center text-3xl font-extrabold text-gray-900">
+                {" "}
+                for owner
+              </p>
+            )}
           </div>
 
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -113,11 +171,10 @@ export default function Signup() {
                     />
                   </div>
                 </div>
-                
 
-                {/* <div>
+                <div>
                   <label
-                    htmlFor="confirmpassword"
+                    htmlFor="confirmPassword"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Confirm Password
@@ -130,7 +187,7 @@ export default function Signup() {
                       value={
                         signupModel
                           .formData
-                          .confirmPassword
+                          .confirmpassword
                       }
                       onChange={
                         handleChange
@@ -140,24 +197,30 @@ export default function Signup() {
                       className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
+                  {!passwordMatch && (
+                    <p className="text-red-500 text-sm">
+                      Passwords do not
+                      match.
+                    </p>
+                  )}
                 </div>
 
                 <div>
                   <label
-                    htmlFor="fname"
+                    htmlFor="firstName"
                     className="block text-sm font-medium text-gray-700"
                   >
                     First Name
                   </label>
                   <div className="mt-1">
                     <input
-                      id="fname"
-                      name="fname"
+                      id="firstname"
+                      name="firstname"
                       type="text"
                       value={
                         signupModel
                           .formData
-                          .firstName
+                          .firstname
                       }
                       onChange={
                         handleChange
@@ -170,20 +233,20 @@ export default function Signup() {
                 </div>
                 <div>
                   <label
-                    htmlFor="lname"
+                    htmlFor="lastname"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Last Name
                   </label>
                   <div className="mt-1">
                     <input
-                      id="lname"
-                      name="lname"
+                      id="lastname"
+                      name="lastname"
                       type="text"
                       value={
                         signupModel
                           .formData
-                          .lastName
+                          .lastname
                       }
                       onChange={
                         handleChange
@@ -197,20 +260,20 @@ export default function Signup() {
 
                 <div>
                   <label
-                    htmlFor="text"
+                    htmlFor="phone"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Telephone Number
                   </label>
                   <div className="mt-1">
                     <input
-                      id="tel"
-                      name="tel"
+                      id="phone"
+                      name="phone"
                       type="text"
                       value={
                         signupModel
                           .formData
-                          .telephone
+                          .phone
                       }
                       onChange={
                         handleChange
@@ -243,14 +306,14 @@ export default function Signup() {
                       }
                       autoComplete="email"
                       required
-                      className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-900 focus:border-indigo-500 sm:text-sm"
+                      className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
-                </div> */}
+                </div>
                 <div className="flex gap-2">
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-300 hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Register
                   </button>

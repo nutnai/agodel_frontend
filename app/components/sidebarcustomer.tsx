@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Userinfo from "../userInfo/page";
 import MyBook from "../myBook/page";
 import Userhistory from "../userHistory/page";
@@ -7,12 +7,28 @@ import Favorite from "../favorite/page";
 const SidebarCustomer = () => {
   const [currentPage, setCurrentPage] =
     useState<string>("pageInfo");
+  useEffect(() => {
+    // Check if there's a stored current page in localStorage
+    const storedPage =
+      localStorage.getItem(
+        "currentPage"
+      );
+    if (storedPage) {
+      setCurrentPage(storedPage);
+    }
+  }, []);
 
   const showPage = (pageId: string) => {
     setCurrentPage(pageId);
+    localStorage.setItem("currentPage", pageId);
   };
+  console.log(currentPage);
   const signout = () => {
     localStorage.removeItem("login");
+    localStorage.removeItem("role");
+    localStorage.removeItem("id");
+    localStorage.removeItem("username");
+    localStorage.removeItem("currentPage");
     window.location.href = "/";
   };
   return (

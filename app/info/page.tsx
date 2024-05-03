@@ -13,12 +13,13 @@ const Home = () => {
   //   const res = await fetch('picked-lab-guided.ngrok-free.app/user/1');
   //   console.log(res.body);
   // }
-
   return (
     <div>
       <HeaderLoggedIn/>
       <div>
-        <SidebarOwner   />
+        {localStorage.getItem("role") === "customer" && <SidebarCustomer />}
+        {localStorage.getItem("role") === "owner" && <SidebarOwner   />}
+        
       </div>
       
     </div>
