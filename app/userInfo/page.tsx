@@ -6,21 +6,25 @@ import React, {
 export default function Userinfo() {
   const [customer, setCustomer] =
     useState({
+      customerId: "",
       firstname: "",
       lastname: "",
+      phone: "",
       email: "",
-      phone: ""
     });
   const [
     editableCustomer,
     setEditableCustomer,
-  ] = useState({firstname: "",
-  lastname: "",
-  email: "",
-  phone: ""});
+  ] = useState({
+    customerId: "",
+    firstname: "",
+    lastname: "",
+    phone: "",
+    email: "",
+  });
   const id = localStorage.getItem("id");
   useEffect(() => {
-    const fetchUsername = async () => {
+    const fetchUserInfo = async () => {
       try {
         const response = await fetch(
           "/api/user/getCustomer",
@@ -43,8 +47,13 @@ export default function Userinfo() {
         const data =
           await response.json();
         console.log(data);
-        setCustomer(data);
-        setEditableCustomer(data);
+        console.log(data.customer);
+        setCustomer(data.customer);
+        setEditableCustomer(
+          data.customer
+        );
+        console.log(customer);
+        console.log(editableCustomer);
       } catch (error) {
         console.error(
           "Error fetching username:",
@@ -54,7 +63,7 @@ export default function Userinfo() {
       }
     };
 
-    fetchUsername();
+    fetchUserInfo();
   }, []);
   const [isEditable, setIsEditable] =
     useState(false);
@@ -85,27 +94,41 @@ export default function Userinfo() {
           },
           body: JSON.stringify({
             customerId: id,
-            newFirstName: editableCustomer.firstname,
-            newLastName:editableCustomer.lastname,
-            newPhone:editableCustomer.phone,
-            newEmail:editableCustomer.email
+            newFirstName:
+              editableCustomer.firstname,
+            newLastName:
+              editableCustomer.lastname,
+            newPhone:
+              editableCustomer.phone,
+            newEmail:
+              editableCustomer.email,
           }),
         }
       );
-      console.log(response)
+      console.log(response);
       alert("data has updated");
-      console.log("Data sent successfully:", response);
+      console.log(
+        "Data sent successfully:",
+        response
+      );
+      window.location.reload();
     } catch (error) {
-      console.error("Error sending data:", error);
-    }// Implement logic to save edited information
+      console.error(
+        "Error sending data:",
+        error
+      );
+    } // Implement logic to save edited information
     // For example, send a PATCH or PUT request to update the customer info
   };
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     setEditableCustomer({
       ...editableCustomer,
       [e.target.name]: e.target.value,
     });
-    console.log("Editable Customer:", editableCustomer);
+    console.log(
+      "Editable Customer:",
+      editableCustomer
+    );
   };
   return (
     <>
@@ -126,9 +149,11 @@ export default function Userinfo() {
                 type="text"
                 id="username"
                 name="username"
-                value={localStorage.getItem(
-                  "username"
-                ) || ""}
+                value={
+                  localStorage.getItem(
+                    "username"
+                  ) || ""
+                }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={true}
               />
@@ -146,7 +171,8 @@ export default function Userinfo() {
                 name="firstname"
                 onChange={handleChange}
                 value={
-                  editableCustomer.firstname|| ""
+                  editableCustomer.firstname ||
+                  ""
                 }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -163,7 +189,10 @@ export default function Userinfo() {
                 type="text"
                 id="lastname"
                 name="lastname"
-                value={editableCustomer.lastname || ""}
+                value={
+                  editableCustomer.lastname ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -180,7 +209,10 @@ export default function Userinfo() {
                 type="email"
                 id="email"
                 name="email"
-                value={editableCustomer.email || ""}
+                value={
+                  editableCustomer.email ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable} // Toggle readOnly based on isEditable state
@@ -197,7 +229,10 @@ export default function Userinfo() {
                 type="text"
                 id="phone"
                 name="phone"
-                value={editableCustomer.phone || ""}
+                value={
+                  editableCustomer.phone ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}

@@ -1,13 +1,82 @@
 "use client";
 import React, { useState } from "react";
 export default function Roomcreate() {
-  
+  const [checked, setChecked] = useState(false);
+  console.log(checked);
+  const handleToggle = () => {
+    setChecked(!checked);
+  };
+  const id = localStorage.getItem("id");
+  const [room, setRoom] = useState({
+    roomType: "",
+    facility: "",
+    people: "0",
+    price: "0",
+    status: "",
+  });
+  const handleChange = (e: any) => {
+    setRoom({
+      ...room,
+      [e.target.name]: e.target.value,
+    });
+    console.log("room:", room);
+  };
+  const handleSubmit = async (
+    e: any
+  ) => {
+    e.preventDefault();
+    const parsedPeople = parseInt(
+      room.people,
+      10
+    );
+    const parsedPrice = parseInt(
+      room.price,
+      10
+    );
+    const status = checked ? "available" : "unavailable";
+    try {
+      const response = await fetch(
+        "/api/room/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify({
+            ownerId: id,
+            roomType: room.roomType,
+            facility: room.facility,
+            people: parsedPeople,
+            price: parsedPrice,
+            status: status,
+          }),
+        }
+      );
+      console.log(response);
+      alert(
+        "data has created successfully"
+      );
+      console.log(
+        "Data sent successfully:",
+        response
+      );
+    } catch (error) {
+      console.error(
+        "Error sending data:",
+        error
+      );
+    } // Implement logic to save edited information
+    // For example, send a PATCH or PUT request to update the customer info
+  };
   const [isOpen, setIsOpen] =
     useState(false);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+  console.log(isOpen);
+  
   return (
     <>
       <div className="w-full sm:w-auto">
@@ -23,18 +92,26 @@ export default function Roomcreate() {
           <div className="bg-white rounded-lg  p-8 h-auto max-h-[80vh] overflow-y-auto">
             {/* Render the Roomcreate component */}
             <div className="h-auto w-auto px-40 py-10 bg-white">
-              <form>
+              <form
+                onSubmit={handleSubmit}
+              >
                 <div className="mb-4 w-auto">
                   <label
-                    htmlFor="roomtypename"
+                    htmlFor="roomType"
                     className="block text-gray-600 mb-1"
                   >
                     Room type name:
                   </label>
                   <input
                     type="text"
-                    id="roomtypename"
-                    name="roomtypename"
+                    id="roomType"
+                    name="roomType"
+                    value={
+                      room.roomType
+                    }
+                    onChange={
+                      handleChange
+                    }
                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                   />
                 </div>
@@ -48,20 +125,30 @@ export default function Roomcreate() {
                   <textarea
                     id="facility"
                     name="facility"
+                    value={
+                      room.facility
+                    }
+                    onChange={
+                      handleChange
+                    }
                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                   ></textarea>
                 </div>
                 <div className="mb-4">
                   <label
-                    htmlFor="person"
+                    htmlFor="people"
                     className="block text-gray-600 mb-1"
                   >
                     Person per room:
                   </label>
                   <input
                     type="number"
-                    id="person"
-                    name="person"
+                    id="people"
+                    name="people"
+                    value={room.people}
+                    onChange={
+                      handleChange
+                    }
                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                   />
                 </div>
@@ -76,23 +163,19 @@ export default function Roomcreate() {
                     type="number"
                     id="price"
                     name="price"
+                    value={room.price}
+                    onChange={
+                      handleChange
+                    }
                     className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div className="mb-4">
-                  <label
-                    htmlFor="available"
-                    className="block text-gray-600 mb-1"
-                  >
-                    Available:
+                <label className="switch block text-gray-600 ">
+                Available?:
                   </label>
-                  <input
-                    type="text"
-                    id="available"
-                    name="available"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
-                  />
-                </div>
+                  <input className="w-6 h-6" type="checkbox" id="status" name="status" checked={checked} onChange={handleToggle} />
+                    <span className="slider round"></span></div>
                 <div className="mb-4">
                   <label
                     htmlFor="etc"
@@ -125,17 +208,14 @@ export default function Roomcreate() {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button
-                      type="submit"
-                      className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
-                    >
+                    <button className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
                       Delete this room
                     </button>
                   </div>
                   <div className="flex gap-4">
                     <button
                       type="submit"
-                      className="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+                      className="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:bg-green-700"
                     >
                       save
                     </button>

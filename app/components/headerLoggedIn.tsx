@@ -1,4 +1,5 @@
 // components/Header.js
+"use client";
 import React,{useState,useEffect} from 'react';
 
 const HeaderLoggedIn = () => {
@@ -19,8 +20,8 @@ const HeaderLoggedIn = () => {
         }
         const data = await response.json();
         console.log(data);
-        setUsername(data.username);
-        localStorage.setItem("username",data.username)
+        setUsername(data.user.username);
+        localStorage.setItem("username",data.user.username)
       } catch (error) {
         console.error('Error fetching username:', error);
         // Handle error

@@ -40,7 +40,7 @@ const SidebarOwner = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex h-full">
         {/* Sidebar */}
         <div className="w-64  bg-blue-900 h-screen shadow-md p-4 flex flex-col">
           {/* Picture of customer */}
@@ -105,7 +105,7 @@ const SidebarOwner = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-grow">
+        <div className="flex-grow  h-full">
           <div
             id="pageDashboard"
             className={`page ${

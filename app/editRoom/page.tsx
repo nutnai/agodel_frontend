@@ -1,7 +1,46 @@
-import React, { useState } from "react";
+import React, {
+  useState,
+  useEffect,
+} from "react";
 import Roomcreate from "../roomCreate/page";
 export default function Editroom() {
-  
+  const [rooms, setRooms] = useState(
+    []
+  );
+  const id = localStorage.getItem("id");
+  useEffect(() => {
+    fetchData();
+  }, []);
+  useEffect(() => {
+    console.log("Rooms:", rooms);
+  }, [rooms]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "/api/room/detail",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify({
+            ownerId: id,
+          }),
+        }
+      );
+      const data =
+        await response.json();
+      setRooms(data.room);
+      console.log(data);
+    } catch (error) {
+      console.error(
+        "Error fetching data:",
+        error
+      );
+    }
+  };
   return (
     <>
       <div className="min-h-screen bg-white px-8">
@@ -52,40 +91,51 @@ export default function Editroom() {
                   </div>
                 </form>
                 <div className="w-full sm:w-auto">
-                 <Roomcreate/>
+                  <Roomcreate />
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div>
-              <div className="border border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8">
-                <img className="w-1/4 h-auto" src="https://upload.opalcollection.com/app/uploads/sites/9/2022/07/22154724/HEADER_Stay-at-Jupiter-Beach-Resort.jpg"/>
-                <div className="ml-4 flex gap-12 items-center justify-center">
-                  <h2 className="text-xl font-semibold mb-2"></h2>
-                  <p className="text-gray-600">
-                    Room name:{"Awesome Hotel "}
-                  </p>
-                  <p className="text-gray-600">
-                    Facility:{"Swimming Pool, Breakfast, Spa, Fitness, Coworking Areas" }
-                  </p>
-                  <p className="text-gray-600">
-                    Price: 3500
-                  </p>
-                  <p className="text-gray-600">
-                    -
-                  </p>
-                  <p className="text-gray-600">
-                    Available
-                  </p>
-                </div>
-              </div>
+              {rooms.map(
+                (room, index) => (
+                  console.log(room),
+                  <div
+                    key={index}
+                    className="border border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8"
+                  >
+                    <img
+                      className="w-1/4 h-auto"
+                      src="https://upload.opalcollection.com/app/uploads/sites/9/2022/07/22154724/HEADER_Stay-at-Jupiter-Beach-Resort.jpg"
+                    />
+                    <div className="ml-4 flex gap-12 items-center justify-center">
+                      <h2 className="text-xl font-semibold mb-2">
+                        {room.roomId}
+                      </h2>
+                      <p className="text-gray-600">
+                        Room name:{" "}
+                        {room.roomType}
+                      </p>
+                      <p className="text-gray-600">
+                        Facility:{" "}
+                        {room.facility}
+                      </p>
+                      <p className="text-gray-600">
+                        Price:{" "}
+                        {room.price}
+                      </p>
+                      {/* Add more fields as needed */}
+                    </div>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
-        
       </div>
     </>
   );

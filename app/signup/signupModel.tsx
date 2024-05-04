@@ -46,33 +46,26 @@ class SignupModel {
       }
       const data = await response.json();
       console.log(data);
-      const signInResponse = await fetch("/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          username: this.formData.username,
-          password: this.formData.password
-        })
-      });
-      if (!signInResponse.ok) {
-        throw new Error("Failed to sign in user after registration");
+      console.log(data.id);
+      localStorage.setItem("id", data.id);
+      if (typeof data === 'number') {
+        const dataString = data.toString();
+        if (dataString.charAt(0) === "1") {
+          localStorage.setItem(
+            "role",
+            "customer"
+          );
+        } else if (dataString.charAt(0) === "2") {
+          localStorage.setItem(
+            "role",
+            "owner"
+          );
+        }
+      } else {
+        console.error("Data is not in the expected format or is empty.");
       }
-      
-      // Optionally, you can handle storing tokens or user data after sign-in
-  
-      // Reset form data after successful sign-up and sign-in
-      this.formData = {
-        username: "",
-        password: "",
-        confirmpassword: "",
-        firstname: "",
-        lastname: "",
-        phone: "",
-        email: "",
-        type : ""
-      };
+      localStorage.setItem("login", "login");
+      window.location.href = "/";
     } catch (error) {
       console.error("Error:", error);
     }

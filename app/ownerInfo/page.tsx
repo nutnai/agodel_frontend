@@ -44,8 +44,8 @@ export default function Ownerinfo() {
         const data =
           await response.json();
         console.log(data);
-        setOwner(data);
-        setEditableOwner(data);
+        setOwner(data.owner);
+        setEditableOwner(data.owner);
       } catch (error) {
         console.error(
           "Error fetching username:",

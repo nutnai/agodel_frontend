@@ -53,20 +53,23 @@ export default function Signin() {
         console.log("Login success");
         const data = await response.json();
         console.log(data);
+        const dataId = data.id;
+        console.log(data.id);
+        console.log(typeof dataId);
         console.log(typeof data);
         localStorage.setItem("login", "login");
         localStorage.setItem(
           "id",
-          data
+          data.id
         );
-        if (typeof data === 'number') {
-          const dataString = data.toString();
-          if (dataString.charAt(0) === "1") {
+        if (typeof dataId === 'string') {
+          console.log(dataId);
+          if (dataId.charAt(0) === "1") {
             localStorage.setItem(
               "role",
               "customer"
             );
-          } else if (dataString.charAt(0) === "2") {
+          } else if (dataId.charAt(0) === "2") {
             localStorage.setItem(
               "role",
               "owner"
