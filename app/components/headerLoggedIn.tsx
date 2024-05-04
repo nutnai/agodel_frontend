@@ -3,6 +3,12 @@
 import React,{useState,useEffect} from 'react';
 
 const HeaderLoggedIn = () => {
+  const home = () => {
+    localStorage.removeItem("search");
+    localStorage.removeItem("roomsearch");
+    localStorage.removeItem("currentPage");
+    window.location.href = "/";
+  };
   const [username,setUsername] = useState("");
   const id = localStorage.getItem("id");
   useEffect(() => {
@@ -34,7 +40,7 @@ const HeaderLoggedIn = () => {
   return (
     <header className="bg-blue-900 py-6 text-white flex justify-between">
       <div className="container">
-      <a href="/">
+      <a onClick={home}>
         <h1 className="text-3xl font-bold ml-7">Agodel</h1>
       </a>
       </div>
