@@ -3,6 +3,7 @@ import React, {
   useEffect,
 } from "react";
 import Roomcreate from "../roomCreate/page";
+import Footer from "../components/footer";
 export default function Editroom() {
   const [rooms, setRooms] = useState(
     []
@@ -43,8 +44,9 @@ export default function Editroom() {
   };
   return (
     <>
-      <div className="min-h-screen bg-white px-8">
-        <div className="container mx-auto px-4 py-8 flex">
+      <div className="overflow-auto h-screen bg-white px-8 ">
+        
+        <div className=" mx-auto px-4 py-8 flex">
           <div className="max-w-4xl mx-auto">
             <div className="bg-blue-900 p-6 rounded-lg shadow-md">
               <div className="flex flex-wrap sm:flex-nowrap  items-center gap-4">
@@ -95,18 +97,20 @@ export default function Editroom() {
                 </div>
               </div>
             </div>
+            
           </div>
+          
         </div>
-
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <div>
+      
+        <div className="container mx-auto px-4 py-8 -mt-11">
+          <div className="max-w-4xl mx-auto ">
+            <div className="h-96 ">
               {rooms.map(
                 (room, index) => (
                   console.log(room),
                   <div
                     key={index}
-                    className="border border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8"
+                    className=" border  border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8"
                   >
                     <img
                       className="w-1/4 h-auto"
@@ -136,7 +140,14 @@ export default function Editroom() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+
+        
+        
+
+       
+      
+      
     </>
   );
 }

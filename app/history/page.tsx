@@ -1,7 +1,7 @@
 import Reciptsearch from "../components/receiptSearch";
 export default function History() {
   return (
-    <>
+    <div className="overflow-auto h-full">
       <div className="min-h-screen bg-white px-8">
         <Reciptsearch/>
         <div className="max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -132,6 +132,6 @@ export default function History() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

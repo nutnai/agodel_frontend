@@ -21,7 +21,7 @@ const Home = () => {
         {localStorage.getItem("role") === "owner" && <SidebarOwner   />}
         
       </div>
-      
+      <Footer/>
     </div>
   );
 };
