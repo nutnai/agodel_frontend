@@ -3,7 +3,7 @@ import Header from '../components/headerLoggedIn';
 import Footer from '../components/footer';
 export default function Booked() {
   return (
-    <>
+    <div className='overflow-auto h-full'>
       <div className="min-h-screen bg-white px-8">
         <div className="bg-white">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,6 +85,6 @@ export default function Booked() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -243,7 +243,7 @@ export default function Userinfo() {
               <button
                 type="button"
                 onClick={handleEdit}
-                className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+                className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:bg-indigo-700"
               >
                 Edit
               </button>

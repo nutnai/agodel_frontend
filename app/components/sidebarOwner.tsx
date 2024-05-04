@@ -40,7 +40,7 @@ const SidebarOwner = () => {
 
   return (
     <>
-      <div className="flex h-full">
+      <div className="flex max-h-screen">
         {/* Sidebar */}
         <div className="w-64  bg-blue-900 h-screen shadow-md p-4 flex flex-col">
           {/* Picture of customer */}
@@ -196,7 +196,7 @@ const SidebarOwner = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 };
