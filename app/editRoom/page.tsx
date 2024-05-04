@@ -34,7 +34,9 @@ export default function Editroom() {
       const data =
         await response.json();
       setRooms(data.room);
-      console.log(data);
+      console.log("data", data);
+      console.log(rooms);
+      window.localStorage.reload;
     } catch (error) {
       console.error(
         "Error fetching data:",
@@ -101,40 +103,46 @@ export default function Editroom() {
           </div>
           
         </div>
-      
         <div className="container mx-auto px-4 py-8 -mt-11">
           <div className="max-w-4xl mx-auto ">
             <div className="h-96 ">
               {rooms.map(
                 (room, index) => (
                   console.log(room),
-                  <div
-                    key={index}
-                    className=" border  border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8"
-                  >
-                    <img
-                      className="w-1/4 h-auto"
-                      src="https://upload.opalcollection.com/app/uploads/sites/9/2022/07/22154724/HEADER_Stay-at-Jupiter-Beach-Resort.jpg"
-                    />
-                    <div className="ml-4 flex gap-12 items-center justify-center">
-                      <h2 className="text-xl font-semibold mb-2">
-                        {room.roomId}
-                      </h2>
-                      <p className="text-gray-600">
-                        Room name:{" "}
-                        {room.roomType}
-                      </p>
-                      <p className="text-gray-600">
-                        Facility:{" "}
-                        {room.facility}
-                      </p>
-                      <p className="text-gray-600">
-                        Price:{" "}
-                        {room.price}
-                      </p>
-                      {/* Add more fields as needed */}
+
+                  (
+                    <div
+                      key={index}
+                      className="border border-gray-300 rounded-lg overflow-hidden flex p-4 items-center mt-8"
+                    >
+                      <img
+                        className="w-1/4 h-auto"
+                        src="https://upload.opalcollection.com/app/uploads/sites/9/2022/07/22154724/HEADER_Stay-at-Jupiter-Beach-Resort.jpg"
+                      />
+                      <div className="ml-4 flex gap-12 items-center justify-center">
+                        <h2 className="text-xl font-semibold mb-2">
+                          {room.roomId}
+                        </h2>
+                        <p className="text-gray-600">
+                          Room name:{" "}
+                          {
+                            room.roomType
+                          }
+                        </p>
+                        <p className="text-gray-600">
+                          Facility:{" "}
+                          {
+                            room.facility
+                          }
+                        </p>
+                        <p className="text-gray-600">
+                          Price:{" "}
+                          {room.price}
+                        </p>
+                        {/* Add more fields as needed */}
+                      </div>
                     </div>
-                  </div>
+                  )
                 )
               )}
             </div>
