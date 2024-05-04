@@ -3,20 +3,15 @@
 import React from 'react';
 
 interface HotelDetailProps {
-  location: string;
   facilities: string[];
   guests: number[];
   prices: number[];
 }
 
-const HotelDetail: React.FC<HotelDetailProps> = ({ location, facilities, guests, prices }) => {
+const HotelDetail: React.FC<HotelDetailProps> = ({  facilities, guests, prices }) => {
   return (
     <div className="ml-16 bg-white p-6 flex justify-evenly">
       <div className='mt-3'>
-        <div className="mb-4">
-          <h3 className="text-lg text-gray-900 font-semibold mb-2">Location:</h3>
-          <p className="text-gray-800">{location}</p>
-        </div>
         <div className="mb-4">
           <h3 className="text-lg mt-9 text-gray-900 font-semibold mb-2">Facilities:</h3>
           <ul className="list-disc list-inside">
