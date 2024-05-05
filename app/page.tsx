@@ -66,8 +66,6 @@ const Home = () => {
 
   return (
     <div className="bg-white flex flex-col min-h-screen">
-      {isLoggedIn && <HeaderLoggedIn />}
-      {!isLoggedIn && <Header />}
       <Placesearch />
       {!isLoggedIn && (
         <div className="px-8">

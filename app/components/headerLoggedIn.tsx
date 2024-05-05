@@ -1,6 +1,7 @@
 // components/Header.js
 "use client";
 import React,{useState,useEffect} from 'react';
+import Link  from 'next/link';
 
 const HeaderLoggedIn = () => {
   const home = () => {
@@ -40,9 +41,9 @@ const HeaderLoggedIn = () => {
   return (
     <header className="bg-blue-900 py-6 text-white flex justify-between">
       <div className="container">
-      <a onClick={home}>
-        <h1 className="text-3xl font-bold ml-7">Agodel</h1>
-      </a>
+      <Link href="/">
+        <h1 className="text-3xl font-bold ml-7 cursor-pointer hover:underline">Agodel</h1>
+      </Link>
       </div>
       <a href="/info">
       <div className="flex items-center pr-4">

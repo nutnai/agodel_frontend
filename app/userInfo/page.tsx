@@ -133,7 +133,7 @@ export default function Userinfo() {
   return (
     <>
       <div className="mx-auto p-4 min-h-screen bg-white w-full px-40">
-        <div className="border-solid rounded-lg border-8 border-yellow-200 p-5 mt-5">
+        <div className="border-solid rounded-lg border-8 border-blue-200 p-5 mt-5">
           <h1 className="text-2xl font-semibold mb-4">
             User information
           </h1>
