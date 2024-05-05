@@ -74,7 +74,7 @@ const Detail = () => {
 
   return (
     <div className="bg-white flex flex-col min-h-screen">
-      <Header />
+      
       <div className="flex justify-between">
         <div className="ml-24 mt-8 text-xl font-semibold text-gray-900">
           {name}

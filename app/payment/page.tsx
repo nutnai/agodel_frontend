@@ -11,7 +11,7 @@ const PaymentPage = () => {
 
   return (
     <div className="bg-white h-screen">
-        <Header />
+        
         <div className='flex justify-around mt-8'>
             <div className=''>
                 23402i40-2u4024u20

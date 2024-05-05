@@ -17,22 +17,7 @@ export default function Signin() {
   const [password, setPassword] =
     useState("");
   async function signin() {
-    //   try {
-    //     const response = await fetch(
-    //       "/api/user/1"
-    //     );
-    //     if (!response.ok) {
-    //       throw new Error(
-    //         "Failed to fetch data"
-    //       );
-    //     }
-    //     const data =
-    //       await response.json();
-    //     console.log(data);
-    //   } catch (error) {
-    //     console.error("Error:" + error);
-    //   }
-    // }
+    
 
     try {
       const response = await fetch(
@@ -55,9 +40,10 @@ export default function Signin() {
         console.log(data);
         const dataId = data.id;
         console.log(data.id);
+        console.log(data.token);
         console.log(typeof dataId);
         console.log(typeof data);
-        localStorage.setItem("login", "login");
+        localStorage.setItem("login", data.token);
         localStorage.setItem(
           "id",
           data.id
@@ -85,7 +71,7 @@ export default function Signin() {
        
       }
       if (!response.ok) {
-        throw new Error("Login failed");
+        console.log(response.json().then((data) => console.log(data)));
       }
     } catch (err) {
       console.log(err);
@@ -93,7 +79,6 @@ export default function Signin() {
   }
   return (
     <>
-      <Header />
       <div className="bg-gray-100 min-h-screen">
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 mb-24">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -162,7 +147,8 @@ export default function Signin() {
                     Forget password ?
                   </button>
                 </a>
-                <div className="flex-row justify-center items-center">
+                
+                <div  className="flex-row justify-center items-center">
                   <button
                     type="submit"
                     onClick={signin}

@@ -15,7 +15,7 @@ const Home = () => {
   // }
   return (
     <div>
-      <HeaderLoggedIn/>
+      
       <div className="min-h-screen">
         {localStorage.getItem("role") === "customer" && <SidebarCustomer />}
         {localStorage.getItem("role") === "owner" && <SidebarOwner   />}

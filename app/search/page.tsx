@@ -59,8 +59,7 @@ export default function Search() {
   ];
   return (
     <>
-      {isLoggedIn && <HeaderLoggedIn />}
-      {!isLoggedIn && <Header />}
+      
       <div className="min-h-screen bg-white">
         <Placesearch />
 
