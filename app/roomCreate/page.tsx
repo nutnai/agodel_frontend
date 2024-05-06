@@ -7,6 +7,7 @@ export default function Roomcreate() {
     setChecked(!checked);
   };
   const id = localStorage.getItem("id");
+  const token = localStorage.getItem("login");
   const [room, setRoom] = useState({
     roomType: "",
     facility: "",
@@ -42,6 +43,7 @@ export default function Roomcreate() {
           headers: {
             "Content-Type":
               "application/json",
+              "authorization": "Bearer " + token,
           },
           body: JSON.stringify({
             ownerId: id,
@@ -54,6 +56,7 @@ export default function Roomcreate() {
         }
       );
       console.log(response);
+      (response.json().then((data) => console.log(data)));
       alert(
         "data has created successfully"
       );

@@ -7,7 +7,7 @@ const Receipt: React.FC = () => {
 
   return (
     <div>
-        
+        <Header />
     <div className="bg-white min-h-screen">
       <div className="bg-white p-8  flex justify-around border-2 pb-4 ">
         <h1 className="text-3xl  font-bold mb-4">Receipt </h1>
