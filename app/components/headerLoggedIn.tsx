@@ -52,10 +52,11 @@ const HeaderLoggedIn = () => {
             }, 
             body: JSON.stringify({ "customerId": id })
           });
-          if (!response.ok) {
-            (response.json().then((data) => console.log(data)));
-          }
           const data = await response.json();
+          if (!response.ok) {
+            alert(data.message)
+          }
+          
           console.log(data);
           setUsername(data.customer.username);
           localStorage.setItem("username",data.customer.username)

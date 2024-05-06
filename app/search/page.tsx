@@ -128,8 +128,7 @@ export default function Search() {
                         <p className="text-gray-600">
                           From:{" "}
                           {
-                            room.place
-                              .name
+                            room.place.name
                           }
                         </p>
                       </div>

@@ -79,7 +79,7 @@ const SidebarCustomer = () => {
         </button>
 
         {/* Sign out button */}
-        <button onClick={signout} className="w-full py-2 px-4 text-left bg-white hover:bg-gray-500 rounded-md">
+        <button onClick={signout} className="w-full py-2 px-4 text-left bg-red-600 hover:bg-red-700  rounded-md">
           Sign out
         </button>
       </div>

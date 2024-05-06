@@ -8,7 +8,8 @@ export default function Roomcreate() {
     setChecked(!checked);
   };
   const id = localStorage.getItem("id");
-  const token = localStorage.getItem("login");
+  const token =
+    localStorage.getItem("login");
   const [room, setRoom] = useState({
     roomType: "",
     facility: "",
@@ -36,8 +37,8 @@ export default function Roomcreate() {
       10
     );
     const status = checked
-      ? "available"
-      : "unavailable";
+      ? "AVAILABLE"
+      : "UNAVAILABLE";
     try {
       const response = await fetch(
         "/api/room/create",
@@ -46,13 +47,14 @@ export default function Roomcreate() {
           headers: {
             "Content-Type":
               "application/json",
-              "authorization": "Bearer " + token,
+            authorization:
+              "Bearer " + token,
           },
           body: JSON.stringify({
             ownerId: id,
             roomType: room.roomType,
             facility: room.facility,
-            people: parsedPeople,
+            numberPeople: parsedPeople,
             price: parsedPrice,
             status: status,
           }),
@@ -84,8 +86,12 @@ export default function Roomcreate() {
   const [isOpen, setIsOpen] =
     useState(false);
 
-  const toggleModal = () => {
+    const toggleModal = () => {
+      setIsOpen(!isOpen);
+    };  
+  const close = () => {
     setIsOpen(!isOpen);
+    window.location.reload();
   };
   console.log(isOpen);
 
@@ -245,7 +251,7 @@ export default function Roomcreate() {
                 </div>
               </form>
               <button
-                onClick={toggleModal}
+                onClick={close}
                 className="bg-indigo-600 mt-4 w-full text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
               >
                 back

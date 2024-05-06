@@ -24,7 +24,7 @@ const Detail = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "/api/room/roomDetail",
+        "/api/room/getRoom",
         {
           method: "POST",
           headers: {
