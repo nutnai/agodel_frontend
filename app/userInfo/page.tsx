@@ -41,14 +41,14 @@ export default function Userinfo() {
             }),
           }
         );
-        if (!response.ok) {
-          throw new Error(
-            "Failed to fetch username"
-          );
-        }
+        
         const data =
           await response.json();
-        console.log(data);
+        if (!response.ok) {
+          alert(data.message);
+        }
+        if(response.ok){
+          console.log(data);
         console.log(data.customer);
         setCustomer(data.customer);
         setEditableCustomer(
@@ -56,6 +56,8 @@ export default function Userinfo() {
         );
         console.log(customer);
         console.log(editableCustomer);
+        }
+        
       } catch (error) {
         console.error(
           "Error fetching username:",
@@ -109,13 +111,18 @@ export default function Userinfo() {
         }
       );
       console.log(response);
-      (response.json().then((data) => console.log(data)));
-      alert("data has updated");
-      console.log(
-        "Data sent successfully:",
-        response
-      );
-      window.location.reload();
+      const data = await response.json();
+      if(!response.ok){
+      alert(data.message);
+      }
+      if(response.ok){
+        console.log(
+          "Data sent successfully:",
+          response
+        );
+        alert("Data has been updated successfully");
+        }
+        window.location.reload();
     } catch (error) {
       console.error(
         "Error sending data:",

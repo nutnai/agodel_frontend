@@ -27,7 +27,7 @@ const Home = () => {
       localStorage.getItem("role")
     ); // Log the value of "login" from localStorage
     if (
-      !(localStorage.getItem("login") === null)
+      !(localStorage.getItem("login") === null)&&!(localStorage.getItem("login") ==="undefined")
     ) {
       setIsLoggedIn(true);
     }

@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 export default function Roomcreate() {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] =
+    useState(false);
   console.log(checked);
   const handleToggle = () => {
     setChecked(!checked);
@@ -33,7 +34,9 @@ export default function Roomcreate() {
       room.price,
       10
     );
-    const status = checked ? "available" : "unavailable";
+    const status = checked
+      ? "available"
+      : "unavailable";
     try {
       const response = await fetch(
         "/api/room/create",
@@ -53,14 +56,21 @@ export default function Roomcreate() {
           }),
         }
       );
-      console.log(response);
-      alert(
-        "data has created successfully"
-      );
-      console.log(
-        "Data sent successfully:",
-        response
-      );
+      const data =
+        await response.json();
+      if (!response.ok) {
+        alert(data.message);
+      }
+      if (response.ok) {
+        console.log(response);
+        alert(
+          "data has created successfully"
+        );
+        console.log(
+          "Data sent successfully:",
+          response
+        );
+      }
     } catch (error) {
       console.error(
         "Error sending data:",
@@ -76,7 +86,7 @@ export default function Roomcreate() {
     setIsOpen(!isOpen);
   };
   console.log(isOpen);
-  
+
   return (
     <>
       <div className="w-full sm:w-auto">
@@ -171,11 +181,21 @@ export default function Roomcreate() {
                   />
                 </div>
                 <div className="mb-4">
-                <label className="switch block text-gray-600 ">
-                Available?:
+                  <label className="switch block text-gray-600 ">
+                    Available?:
                   </label>
-                  <input className="w-6 h-6" type="checkbox" id="status" name="status" checked={checked} onChange={handleToggle} />
-                    <span className="slider round"></span></div>
+                  <input
+                    className="w-6 h-6"
+                    type="checkbox"
+                    id="status"
+                    name="status"
+                    checked={checked}
+                    onChange={
+                      handleToggle
+                    }
+                  />
+                  <span className="slider round"></span>
+                </div>
                 <div className="mb-4">
                   <label
                     htmlFor="etc"
