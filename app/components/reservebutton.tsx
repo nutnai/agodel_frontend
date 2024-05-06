@@ -1,7 +1,7 @@
 // components/ReservedButton.js
 
 import React, { useState,useEffect } from 'react';
-
+import Link from 'next/link';
 const ReservedButton = () => {
   const [isReserved, setIsReserved] = useState(false);
   const [disable,setDisable]= useState(false) ;
@@ -30,7 +30,7 @@ const ReservedButton = () => {
     <button
       onClick={toggleModal}
       disabled={disable}
-      className={`flex items-center justify-center font-semibold w-24 h-12 rounded-2xl focus:outline-none text-indigo-900 ${
+      className={`flex items-center justify-center font-semibold w-24 h-12 rounded-2xl focus:outline-none text-black ${
         isReserved ? 'bg-yellow-300' : 'bg-yellow-200'
       }`}
     >
@@ -72,9 +72,11 @@ const ReservedButton = () => {
           <button onClick={toggleModal} className="mr-10 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mt-4">
               Close
           </ button>
+          <Link href={"../payment"}>
           <button onClick={toggleModal} className="mr-10 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-4">
               Confirm
           </button>
+          </Link>
          </div>
           
         </div>
