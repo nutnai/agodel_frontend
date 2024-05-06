@@ -36,7 +36,7 @@ const [error, setError] = useState("null");
       );
       const data =
         await response.json();
-      setRooms(data.room);
+      setRooms(data.rooms);
       setError(data.message);
       console.log("err", data.message);
       console.log("data", data);

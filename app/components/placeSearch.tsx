@@ -11,9 +11,12 @@ export default function Placesearch() {
     upperPrice: "1000000",
   });
   useEffect(() => {
-    const storedSearch = localStorage.getItem("search");
+    const storedSearch =
+      localStorage.getItem("search");
     if (storedSearch) {
-      setSearch(JSON.parse(storedSearch)[0]);
+      setSearch(
+        JSON.parse(storedSearch)[0]
+      );
     }
   }, []);
   const handleChange = (e: any) => {
@@ -23,23 +26,19 @@ export default function Placesearch() {
     });
     console.log("search:", search);
   };
-  
 
   const handleSubmit = async (
     e: any
   ) => {
     e.preventDefault();
     const parsedPeople = parseInt(
-      search.numberPeople,
-      10
+      search.numberPeople
     );
     const parsedLowerPrice = parseInt(
-      search.lowerPrice,
-      10
+      search.lowerPrice
     );
     const parsedUpperPrice = parseInt(
-      search.upperPrice,
-      10
+      search.upperPrice
     );
     try {
       const response = await fetch(
@@ -64,9 +63,15 @@ export default function Placesearch() {
         await response.json();
       console.log(data);
       console.log("search:", search);
-      setSearch(data.places);
-      localStorage.setItem("roomsearch", JSON.stringify(data.places));
-      localStorage.setItem("search", JSON.stringify([search]));
+      setSearch(data.rooms);
+      localStorage.setItem(
+        "roomsearch",
+        JSON.stringify(data.rooms)
+      );
+      localStorage.setItem(
+        "search",
+        JSON.stringify([search])
+      );
       window.location.href = "/search";
     } catch (error) {
       console.error(

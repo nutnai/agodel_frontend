@@ -151,8 +151,9 @@ export default function Placeinfo() {
         alert("data has updated");
         console.log(
           "Data sent successfully:",
-          response
+          response          
         );
+        window.location.reload();
       }
     } catch (error) {
       console.error(
