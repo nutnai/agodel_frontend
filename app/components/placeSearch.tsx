@@ -6,10 +6,22 @@ import React, {
 export default function Placesearch() {
   const [search, setSearch] = useState({
     address: "",
-    numberPeople: "0",
+    numberPeople: "1",
     lowerPrice: "0",
     upperPrice: "1000000",
   });
+  const [date, setDate] = useState({ dateCheckIn: '', dateCheckOut: '' });
+
+  const handleDateChange = (event:any) => {
+    const { name, value } = event.target;
+    setDate({ ...date, [name]: value });
+  };
+  useEffect(()=>{
+    if(localStorage.getItem("date")!==null){
+      setDate(JSON.parse(localStorage.getItem("date") || "{}"));
+    }
+  }, [])
+  console.log(search);
   useEffect(() => {
     const storedSearch =
       localStorage.getItem("search");
@@ -59,8 +71,13 @@ export default function Placesearch() {
           }),
         }
       );
+      console.log(search);
       const data =
         await response.json();
+      if (!response.ok) {
+        alert(data.message);
+      }
+      localStorage.setItem("date",JSON.stringify(date))
       console.log(data);
       console.log("search:", search);
       setSearch(data.rooms);
@@ -113,29 +130,33 @@ export default function Placesearch() {
                 </div>
                 <div className="w-full sm:w-auto">
                   <label
-                    htmlFor="dates"
+                    htmlFor="dateCheckIn"
                     className="block text-sm font-medium text-white"
                   >
                     Date Start
                   </label>
                   <input
                     type="date"
-                    id="dates"
-                    name="dates"
+                    id="dateCheckIn"
+                    name="dateCheckIn"
+                    value={date.dateCheckIn}
+                    onChange={handleDateChange}
                     className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   />
                 </div>
                 <div className="w-full sm:w-auto">
                   <label
-                    htmlFor="datee"
+                    htmlFor="dateCheckOut"
                     className="block text-sm font-medium text-white"
                   >
                     Date End
                   </label>
                   <input
                     type="date"
-                    id="datee"
-                    name="datee"
+                    id="dateCheckOut"
+                    name="dateCheckOut"
+                    value={date.dateCheckOut}
+                    onChange={handleDateChange}
                     className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                   />
                 </div>
@@ -157,7 +178,7 @@ export default function Placesearch() {
                       handleChange
                     }
                     className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                    min="0"
+                    min="1"
                   />
                 </div>
               </div>
