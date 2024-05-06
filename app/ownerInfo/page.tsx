@@ -5,21 +5,23 @@ import React, {
 } from "react";
 
 export default function Ownerinfo() {
-  const token = localStorage.getItem("login");
-  const [owner, setOwner] =
-    useState({
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: ""
-    });
+  const token =
+    localStorage.getItem("login");
+  const [owner, setOwner] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+  });
   const [
     editableOwner,
     setEditableOwner,
-  ] = useState({firstname: "",
-  lastname: "",
-  email: "",
-  phone: ""});
+  ] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+  });
   const id = localStorage.getItem("id");
   useEffect(() => {
     const fetchUsername = async () => {
@@ -31,21 +33,26 @@ export default function Ownerinfo() {
             headers: {
               "Content-Type":
                 "application/json",
-                'authorization': 'Bearer ' + token
+              authorization:
+                "Bearer " + token,
             },
             body: JSON.stringify({
               ownerId: id,
             }),
           }
         );
-        if (!response.ok) {
-          (response.json().then((data) => console.log(data)));
-        }
+
         const data =
           await response.json();
+        if (!response.ok) {
+          alert(data.message);
+        }
+        if (response.ok) {
+          console.log(data);
+          setOwner(data.owner);
+          setEditableOwner(data.owner);
+        }
         console.log(data);
-        setOwner(data.owner);
-        setEditableOwner(data.owner);
       } catch (error) {
         console.error(
           "Error fetching username:",
@@ -83,34 +90,54 @@ export default function Ownerinfo() {
           headers: {
             "Content-Type":
               "application/json",
-              'authorization': 'Bearer ' + token
+            authorization:
+              "Bearer " + token,
           },
           body: JSON.stringify({
             ownerId: id,
-            newFirstname: editableOwner.firstname,
-            newLastname:editableOwner.lastname,
-            newPhone:editableOwner.phone,
-            newEmail:editableOwner.email
+            newFirstname:
+              editableOwner.firstname,
+            newLastname:
+              editableOwner.lastname,
+            newPhone:
+              editableOwner.phone,
+            newEmail:
+              editableOwner.email,
           }),
         }
-        
       );
-      console.log(response);
-      (response.json().then((data) => console.log(data)));
-      alert("data has updated");
+      const data =
+        await response.json();
+      if (!response.ok) {
+        alert(data.message);
+      }
+      if (response.ok) {
+        console.log(response);
+        alert("data has updated");
+        console.log(
+          "Data sent successfully:",
+          response
+        );
+      }
       window.location.reload();
-      console.log("Data sent successfully:", response);
+      
     } catch (error) {
-      console.error("Error sending data:", error);
-    }// Implement logic to save edited information
+      console.error(
+        "Error sending data:",
+        error
+      );
+    } // Implement logic to save edited information
     // For example, send a PATCH or PUT request to update the customer info
   };
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     setEditableOwner({
       ...editableOwner,
       [e.target.name]: e.target.value,
     });
-    console.log("Editable Owner:", editableOwner);
+    console.log(
+      "Editable Owner:",
+      editableOwner
+    );
   };
   return (
     <>
@@ -131,9 +158,11 @@ export default function Ownerinfo() {
                 type="text"
                 id="username"
                 name="username"
-                value={localStorage.getItem(
-                  "username"
-                ) || ""}
+                value={
+                  localStorage.getItem(
+                    "username"
+                  ) || ""
+                }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={true}
               />
@@ -151,7 +180,8 @@ export default function Ownerinfo() {
                 name="firstname"
                 onChange={handleChange}
                 value={
-                  editableOwner.firstname|| ""
+                  editableOwner.firstname ||
+                  ""
                 }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -168,7 +198,10 @@ export default function Ownerinfo() {
                 type="text"
                 id="lastname"
                 name="lastname"
-                value={editableOwner.lastname || ""}
+                value={
+                  editableOwner.lastname ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}
@@ -185,7 +218,10 @@ export default function Ownerinfo() {
                 type="email"
                 id="email"
                 name="email"
-                value={editableOwner.email || ""}
+                value={
+                  editableOwner.email ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable} // Toggle readOnly based on isEditable state
@@ -202,7 +238,10 @@ export default function Ownerinfo() {
                 type="text"
                 id="phone"
                 name="phone"
-                value={editableOwner.phone || ""}
+                value={
+                  editableOwner.phone ||
+                  ""
+                }
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
                 readOnly={!isEditable}

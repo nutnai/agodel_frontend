@@ -5,7 +5,8 @@ import React, {
 } from "react";
 import ToggleSwitch from "../components/switch";
 export default function Placeinfo() {
-  const token = localStorage.getItem("login");
+  const token =
+    localStorage.getItem("login");
   const [place, setPlace] = useState({
     place_id: "",
     name: "",
@@ -36,27 +37,30 @@ export default function Placeinfo() {
             headers: {
               "Content-Type":
                 "application/json",
-                'authorization': 'Bearer ' + token
+              authorization:
+                "Bearer " + token,
             },
             body: JSON.stringify({
               ownerId: id,
             }),
           }
         );
-        if (!response.ok) {
-          throw new Error(
-            "Failed to fetch username"
-          );
-        }
         const data =
           await response.json();
-        console.log(data);
-        console.log(data.place);
-        setPlace(data.place);
-        setEditablePlace(data.place);
-        console.log(data.place.status);
-        console.log(place);
-        console.log(editablePlace);
+        if (!response.ok) {
+          alert(data.message);
+        }
+        if (response.ok) {
+          console.log(data);
+          console.log(data.place);
+          setPlace(data.place);
+          setEditablePlace(data.place);
+          console.log(
+            data.place.status
+          );
+          console.log(place);
+          console.log(editablePlace);
+        }
       } catch (error) {
         console.error(
           "Error fetching place:",
@@ -71,7 +75,8 @@ export default function Placeinfo() {
   useEffect(() => {
     // Update checkeds based on editablePlace.status
     setCheckeds(
-      editablePlace.status === "AVAILABLE"
+      editablePlace.status ===
+        "AVAILABLE"
     );
   }, [editablePlace.status]);
   console.log(checkeds);
@@ -86,7 +91,8 @@ export default function Placeinfo() {
     setIsEditable(false);
     setEditablePlace(place);
     setCheckeds(
-      editablePlace.status === "AVAILABLE"
+      editablePlace.status ===
+        "AVAILABLE"
     );
   };
   console.log(isEditable);
@@ -107,10 +113,12 @@ export default function Placeinfo() {
     setIsEditable(false);
     setPlace(editablePlace); // Disable edit mode after saving
     if (checkeds === true) {
-      editablePlace.status = "AVAILABLE";
+      editablePlace.status =
+        "AVAILABLE";
     }
     if (checkeds === false) {
-      editablePlace.status = "UNAVAILABLE";
+      editablePlace.status =
+        "UNAVAILABLE";
     }
     try {
       const response = await fetch(
@@ -120,7 +128,8 @@ export default function Placeinfo() {
           headers: {
             "Content-Type":
               "application/json",
-              'authorization': 'Bearer ' + token
+            authorization:
+              "Bearer " + token,
           },
           body: JSON.stringify({
             ownerId: id,
@@ -132,13 +141,19 @@ export default function Placeinfo() {
           }),
         }
       );
-      console.log(response);
-      (response.json().then((data) => console.log(data)));
-      alert("data has updated");
-      console.log(
-        "Data sent successfully:",
-        response
-      );
+      const data =
+        await response.json();
+      if (!response.ok) {
+        alert(data.message);
+      }
+      if (response.ok) {
+        console.log(response);
+        alert("data has updated");
+        console.log(
+          "Data sent successfully:",
+          response
+        );
+      }
     } catch (error) {
       console.error(
         "Error sending data:",

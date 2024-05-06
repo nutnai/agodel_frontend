@@ -30,7 +30,7 @@ export default function RootLayout({
     console.log(
       localStorage.getItem("role")
     ); // Log the value of "login" from localStorage
-    if (!(localStorage.getItem("login") ===null)) {
+    if (!(localStorage.getItem("login") ===null)&&!(localStorage.getItem("login") ==="undefined")) {
       setIsLoggedIn(true);
     }
   }, []);
