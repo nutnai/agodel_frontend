@@ -11,31 +11,63 @@ const HeaderLoggedIn = () => {
     window.location.href = "/";
   };
   const [username,setUsername] = useState("");
+  
   const id = localStorage.getItem("id");
+  const token = localStorage.getItem("login");
   useEffect(() => {
-    const fetchUsername = async () => {
-      try {
-        const response = await fetch('/api/user/getUserDetail', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }, 
-          body: JSON.stringify({ "id": id })
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch username');
+    if(localStorage.getItem("role") === "owner"){
+      const fetchUsername = async () => {
+        try {
+          const response = await fetch('/api/user/getOwner', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'authorization': 'Bearer ' + token
+            }, 
+            body: JSON.stringify({ "ownerId": id })
+          });
+          if (!response.ok) {
+            (response.json().then((data) => console.log(data)));
+          }
+          const data = await response.json();
+          console.log(data);
+          setUsername(data.owner.username);
+          localStorage.setItem("username",data.owner.username)
+        } catch (error) {
+          console.error('Error fetching username:', error);
+          // Handle error
         }
-        const data = await response.json();
-        console.log(data);
-        setUsername(data.user.username);
-        localStorage.setItem("username",data.user.username)
-      } catch (error) {
-        console.error('Error fetching username:', error);
-        // Handle error
-      }
-    };
-
-    fetchUsername();
+      };
+  
+      fetchUsername();
+    }
+    if (localStorage.getItem("role") === "customer") {
+      const fetchUsername = async () => {
+        try {
+          const response = await fetch('/api/user/getCustomer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'authorization': 'Bearer ' + token
+            }, 
+            body: JSON.stringify({ "customerId": id })
+          });
+          if (!response.ok) {
+            (response.json().then((data) => console.log(data)));
+          }
+          const data = await response.json();
+          console.log(data);
+          setUsername(data.customer.username);
+          localStorage.setItem("username",data.customer.username)
+        } catch (error) {
+          console.error('Error fetching username:', error);
+          // Handle error
+        }
+      };
+  
+      fetchUsername();
+    }
+    
   }, []);
     
   return (

@@ -42,7 +42,7 @@ class SignupModel {
         body: JSON.stringify(this.formData)
       });
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        (response.json().then((data) => console.log(data)));
       }
       const data = await response.json();
       console.log(data);
@@ -64,7 +64,7 @@ class SignupModel {
       } else {
         console.error("Data is not in the expected format or is empty.");
       }
-      localStorage.setItem("login", "login");
+      localStorage.setItem("login", data.token);
       window.location.href = "/";
     } catch (error) {
       console.error("Error:", error);

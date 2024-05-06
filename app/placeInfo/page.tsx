@@ -5,6 +5,7 @@ import React, {
 } from "react";
 import ToggleSwitch from "../components/switch";
 export default function Placeinfo() {
+  const token = localStorage.getItem("login");
   const [place, setPlace] = useState({
     place_id: "",
     name: "",
@@ -35,6 +36,7 @@ export default function Placeinfo() {
             headers: {
               "Content-Type":
                 "application/json",
+                'authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
               ownerId: id,
@@ -69,7 +71,7 @@ export default function Placeinfo() {
   useEffect(() => {
     // Update checkeds based on editablePlace.status
     setCheckeds(
-      editablePlace.status === "public"
+      editablePlace.status === "AVAILABLE"
     );
   }, [editablePlace.status]);
   console.log(checkeds);
@@ -84,7 +86,7 @@ export default function Placeinfo() {
     setIsEditable(false);
     setEditablePlace(place);
     setCheckeds(
-      editablePlace.status === "public"
+      editablePlace.status === "AVAILABLE"
     );
   };
   console.log(isEditable);
@@ -105,10 +107,10 @@ export default function Placeinfo() {
     setIsEditable(false);
     setPlace(editablePlace); // Disable edit mode after saving
     if (checkeds === true) {
-      editablePlace.status = "public";
+      editablePlace.status = "AVAILABLE";
     }
     if (checkeds === false) {
-      editablePlace.status = "private";
+      editablePlace.status = "UNAVAILABLE";
     }
     try {
       const response = await fetch(
@@ -118,6 +120,7 @@ export default function Placeinfo() {
           headers: {
             "Content-Type":
               "application/json",
+              'authorization': 'Bearer ' + token
           },
           body: JSON.stringify({
             ownerId: id,
@@ -130,6 +133,7 @@ export default function Placeinfo() {
         }
       );
       console.log(response);
+      (response.json().then((data) => console.log(data)));
       alert("data has updated");
       console.log(
         "Data sent successfully:",
