@@ -10,9 +10,13 @@ import React, {
 export default function Search() {
   const detail = (roomId: string) => {
     // Set roomId in localStorage and redirect to detail page
-    localStorage.setItem("roomId", roomId);
+    localStorage.setItem(
+      "roomId",
+      roomId
+    );
     window.location.href = "/detail";
   };
+  
   const [room, setRoom] = useState([]);
   const [isLoggedIn, setIsLoggedIn] =
     useState(false);
@@ -30,14 +34,18 @@ export default function Search() {
     ) {
       setIsLoggedIn(true);
     }
-    const storedHotels =
+    if(localStorage.getItem("roomsearch") !== "undefined"){const storedHotels =
       localStorage.getItem(
         "roomsearch"
       );
     if (storedHotels) {
-      setRoom(JSON.parse(storedHotels));
+      setRoom(
+        JSON.parse(storedHotels)
+      );}
+      
     }
   }, []);
+
   const hotels = [
     {
       id: 1,
@@ -59,49 +67,78 @@ export default function Search() {
   ];
   return (
     <>
-      
       <div className="min-h-screen bg-white">
         <Placesearch />
 
-        {/* Hotel listings */}
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-4">
-              Available Hotels
-            </h2>
-            <div>
-            {room.map((room) => (
-                <button
-                  key={room.roomId}
-                  className="w-full"
-                  onClick={() => detail(room.roomId)}
-                >
-                  <div className="border border-gray-300 rounded-lg overflow-hidden flex py-4 px-4 items-center mt-8">
-                    <img
-                      src={
-                        "https://f.ptcdn.info/973/041/000/o5ywjwbf9S1Ptz4IGn7-o.jpg"
-                      }
-                      className="w-1/4 h-auto rounded-md"
-                      alt={room.roomType}
-                    />
-                    <div className="ml-4 flex gap-12 items-center justify-center">
-                      <h2 className="text-m font-semibold mb-2">
-                        {room.roomType}
-                      </h2>
-                      <p className="text-gray-600">Facility: {room.facility}</p>
-                      <p className="text-gray-600">
-                        Number of people per room: {room.numberPeople}
-                      </p>
-                      <p className="text-gray-600">Price: ${room.price} per night</p>
-                      <p className="text-gray-600">Status: {room.status}</p>
-                      <p className="text-gray-600">From: {room.place.name}</p>
+          <div className="container mx-auto px-4 py-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-semibold mb-4">
+                Available Hotels
+              </h2>
+              <div>
+                {room.map((room) => (
+                  <button
+                    key={room.roomId}
+                    className="w-full"
+                    onClick={() =>
+                      detail(
+                        room.roomId
+                      )
+                    }
+                  >
+                    <div className="border border-gray-300 rounded-lg overflow-hidden flex py-4 px-4 items-center mt-8">
+                      <img
+                        src={
+                          "https://f.ptcdn.info/973/041/000/o5ywjwbf9S1Ptz4IGn7-o.jpg"
+                        }
+                        className="w-1/4 h-auto rounded-md"
+                        alt={
+                          room.roomType
+                        }
+                      />
+                      <div className="ml-4 flex gap-12 items-center justify-center">
+                        <h2 className="text-m font-semibold mb-2">
+                          {
+                            room.roomType
+                          }
+                        </h2>
+                        <p className="text-gray-600">
+                          Facility:{" "}
+                          {
+                            room.facility
+                          }
+                        </p>
+                        <p className="text-gray-600">
+                          Number of
+                          people per
+                          room:{" "}
+                          {
+                            room.numberPeople
+                          }
+                        </p>
+                        <p className="text-gray-600">
+                          Price: $
+                          {room.price}{" "}
+                          per night
+                        </p>
+                        <p className="text-gray-600">
+                          Status:{" "}
+                          {room.status}
+                        </p>
+                        <p className="text-gray-600">
+                          From:{" "}
+                          {
+                            room.place
+                              .name
+                          }
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
       </div>
       <Footer />
     </>

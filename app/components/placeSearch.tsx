@@ -51,7 +51,7 @@ export default function Placesearch() {
               "application/json",
           },
           body: JSON.stringify({
-            address: search.address,
+            keyword: search.address,
             numberPeople: parsedPeople,
             lowerPrice:
               parsedLowerPrice,

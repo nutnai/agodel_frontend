@@ -5,6 +5,7 @@ import React, {
 } from "react";
 
 export default function Ownerinfo() {
+  const token = localStorage.getItem("login");
   const [owner, setOwner] =
     useState({
       firstname: "",
@@ -30,6 +31,7 @@ export default function Ownerinfo() {
             headers: {
               "Content-Type":
                 "application/json",
+                'authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
               ownerId: id,
@@ -37,9 +39,7 @@ export default function Ownerinfo() {
           }
         );
         if (!response.ok) {
-          throw new Error(
-            "Failed to fetch username"
-          );
+          (response.json().then((data) => console.log(data)));
         }
         const data =
           await response.json();
@@ -83,18 +83,20 @@ export default function Ownerinfo() {
           headers: {
             "Content-Type":
               "application/json",
+              'authorization': 'Bearer ' + token
           },
           body: JSON.stringify({
             ownerId: id,
-            newFirstName: editableOwner.firstname,
-            newLastName:editableOwner.lastname,
+            newFirstname: editableOwner.firstname,
+            newLastname:editableOwner.lastname,
             newPhone:editableOwner.phone,
             newEmail:editableOwner.email
           }),
         }
         
       );
-      console.log(response)
+      console.log(response);
+      (response.json().then((data) => console.log(data)));
       alert("data has updated");
       window.location.reload();
       console.log("Data sent successfully:", response);

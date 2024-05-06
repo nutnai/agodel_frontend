@@ -12,6 +12,7 @@ export default function Userinfo() {
       phone: "",
       email: "",
     });
+    const token = localStorage.getItem("login");
   const [
     editableCustomer,
     setEditableCustomer,
@@ -33,9 +34,10 @@ export default function Userinfo() {
             headers: {
               "Content-Type":
                 "application/json",
+                'authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
-              customerId: id,
+              customerId: id,              
             }),
           }
         );
@@ -91,12 +93,13 @@ export default function Userinfo() {
           headers: {
             "Content-Type":
               "application/json",
+              'authorization': 'Bearer ' + token
           },
           body: JSON.stringify({
             customerId: id,
-            newFirstName:
+            newFirstname:
               editableCustomer.firstname,
-            newLastName:
+            newLastname:
               editableCustomer.lastname,
             newPhone:
               editableCustomer.phone,
@@ -106,6 +109,7 @@ export default function Userinfo() {
         }
       );
       console.log(response);
+      (response.json().then((data) => console.log(data)));
       alert("data has updated");
       console.log(
         "Data sent successfully:",
