@@ -73,6 +73,7 @@ const Detail = () => {
   ];
 
   return (
+    <>
     <div className="bg-white flex flex-col min-h-screen">
       
       <div className="flex justify-between">
@@ -96,13 +97,15 @@ const Detail = () => {
         </div>
       </div>
       <PictureBox images={images} />
-      <HotelDetail
+      {/* <HotelDetail
         facilities={[roomDetail.facility]}
         guests={[roomDetail.numberPeople]}
         prices={[roomDetail.price]}
-      />
-      <Footer />
+      /> */}
+      
     </div>
+    <Footer />
+    </>
   );
 };
 

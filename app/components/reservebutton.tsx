@@ -1,10 +1,7 @@
 // components/ReservedButton.js
 
-import React, {
-  useState,
-  useEffect,
-} from "react";
-
+import React, { useState,useEffect } from 'react';
+import Link from 'next/link';
 const ReservedButton = () => {
   const id = localStorage.getItem("id")
   const token = localStorage.getItem("login")
@@ -176,7 +173,6 @@ const ReservedButton = () => {
   //         console.error("Data is not in the expected format or is empty.");
   //       }
         
-        
   //       window.location.href = "/";
         
        
@@ -265,6 +261,22 @@ const ReservedButton = () => {
               </button>
             </div>
           </div>
+          <div className='mr-28'>
+            -
+          </div>
+        </div>
+         
+         
+         <div className='mt-20 flex justify-end'>
+          <button onClick={toggleModal} className="mr-10 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mt-4">
+              Close
+          </ button>
+          <Link href={"../payment"}>
+          <button onClick={toggleModal} className="mr-10 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-4">
+              Confirm
+          </button>
+          </Link>
+         </div>
         </div>
       )}
     </div>
