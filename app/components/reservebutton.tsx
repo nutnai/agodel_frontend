@@ -1,11 +1,16 @@
 // components/ReservedButton.js
 
-import React, { useState,useEffect } from 'react';
-import Link from 'next/link';
+import React, {
+  useState,
+  useEffect,
+} from "react";
+
 const ReservedButton = () => {
-  const id = localStorage.getItem("id")
-  const token = localStorage.getItem("login")
-  const roomId = localStorage.getItem("roomId")
+  const id = localStorage.getItem("id");
+  const token =
+    localStorage.getItem("login");
+  const roomId =
+    localStorage.getItem("roomId");
   const [isReserved, setIsReserved] =
     useState(false);
   const [disable, setDisable] =
@@ -24,7 +29,8 @@ const ReservedButton = () => {
       setDisable(true);
     }
   });
-  const [customer,setCustomer]=useState([])
+  const [customer, setCustomer] =
+    useState([]);
   const [roomDetail, setRoomDetail] =
     useState([]);
   useEffect(() => {
@@ -39,7 +45,8 @@ const ReservedButton = () => {
           headers: {
             "Content-Type":
               "application/json",
-              'authorization': 'Bearer ' + token
+            authorization:
+              "Bearer " + token,
           },
           body: JSON.stringify({
             roomId: roomId,
@@ -59,6 +66,7 @@ const ReservedButton = () => {
       );
     }
   };
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -69,26 +77,26 @@ const ReservedButton = () => {
             headers: {
               "Content-Type":
                 "application/json",
-                'authorization': 'Bearer ' + token
+              authorization:
+                "Bearer " + token,
             },
             body: JSON.stringify({
-              customerId: id,              
+              customerId: id,
             }),
           }
         );
-        
+
         const data =
           await response.json();
         if (!response.ok) {
           alert(data.message);
         }
-        if(response.ok){
+        if (response.ok) {
           console.log(data);
-        console.log(data.customer);
-        setCustomer(data.customer);
-        console.log(customer);
+          console.log(data.customer);
+          setCustomer(data.customer);
+          console.log(customer);
         }
-        
       } catch (error) {
         console.error(
           "Error fetching username:",
@@ -105,7 +113,25 @@ const ReservedButton = () => {
       localStorage.getItem("date")
     )
   );
-
+  const [dayCount, setDayCount] =
+    useState(0);
+  useEffect(() => {
+    const dateStart = new Date(
+    date.dateCheckIn
+  );
+  console.log(dateStart);
+  const dateEnd = new Date(
+    date.dateCheckOut
+  );
+  const timeDiff =
+    Math.abs(dateEnd.getTime() - dateStart.getTime());
+  console.log(timeDiff);
+  const days = Math.ceil(
+    timeDiff / (1000 * 3600 * 24)
+  );
+  console.log(days);
+  setDayCount(days); 
+  }, [date]);
   const handleDateChange = (
     event: any
   ) => {
@@ -124,66 +150,59 @@ const ReservedButton = () => {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
-  // async function reserve() {  
-  //   try {
-  //     const response = await fetch(
-  //       "/api/user/login",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type":
-  //             "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           roomId: roomId,
-  //           dateCheckIn: date.dateCheckIn,
-  //           dateCheckOut: date.dateCheckOut,
-  //           dayCount:
-  //        }),
-  //       }
-  //     );
-  //     if (response.ok) {
-  //       console.log("Login success");
-  //       const data = await response.json();
-  //       console.log(data);
-  //       const dataId = data.id;
-  //       console.log(data.id);
-  //       console.log(data.token);
-  //       console.log(typeof dataId);
-  //       console.log(typeof data);
-  //       localStorage.setItem("login", data.token);
-  //       localStorage.setItem(
-  //         "id",
-  //         data.id
-  //       );
-  //       if (typeof dataId === 'string') {
-  //         console.log(dataId);
-  //         if (dataId.charAt(0) === "1") {
-  //           localStorage.setItem(
-  //             "role",
-  //             "customer"
-  //           );
-  //         } else if (dataId.charAt(0) === "2") {
-  //           localStorage.setItem(
-  //             "role",
-  //             "owner"
-  //           );
-  //         }
-  //       } else {
-  //         console.error("Data is not in the expected format or is empty.");
-  //       }
-        
-  //       window.location.href = "/";
-        
-       
-  //     }
-  //     if (!response.ok) {
-  //       console.log(response.json().then((data) => console.log(data)));
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  async function reserve() {
+    try {
+      const response = await fetch(
+        "/api/place/reserve",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+              "authorization": "Bearer " + token,
+          },
+          body: JSON.stringify({
+            roomId: roomId,
+            dateCheckIn:
+              date.dateCheckIn,
+            dateCheckOut:
+              date.dateCheckOut,
+            dayCount: dayCount,
+          }),
+        }
+      );
+      if (response.ok) {
+        console.log("Login success");
+        const data =
+          await response.json();
+        console.log(data);
+        const dataId = data.id;
+        console.log(data.id);
+        console.log(data.token);
+        console.log(typeof dataId);
+        console.log(typeof data);
+        localStorage.setItem(
+          "login",
+          data.token
+        );
+        localStorage.setItem(
+          "id",
+          data.id
+        );
+      }
+      if (!response.ok) {
+        console.log(
+          response
+            .json()
+            .then((data) =>
+              console.log(data)
+            )
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div>
       <button
@@ -211,13 +230,17 @@ const ReservedButton = () => {
               </div>
             </div>
             <div className="mt-12 flex justify-between">
-              <div className="ml-24"> 
-                <div>{customer.firstname}</div>
-                <div>{customer.lastname}</div>
+              <div className="ml-24">
+                <div>
+                  {customer.firstname}
+                </div>
+                <div>
+                  {customer.lastname}
+                </div>
                 <div>
                   <input
-                  id="dateCheckIn"
-                  name="dateCheckIn"
+                    id="dateCheckIn"
+                    name="dateCheckIn"
                     type="date"
                     value={
                       date.dateCheckIn
@@ -227,10 +250,10 @@ const ReservedButton = () => {
                     }
                   ></input>
                 </div>
-                <div >
+                <div>
                   <input
-                  id="dateCheckOut"
-                  name="dateCheckOut"
+                    id="dateCheckOut"
+                    name="dateCheckOut"
                     type="date"
                     value={
                       date.dateCheckOut
@@ -254,29 +277,13 @@ const ReservedButton = () => {
                 Close
               </button>
               <button
-                onClick={toggleModal}
+                onClick={reserve}
                 className="mr-10 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-4"
               >
                 Confirm
               </button>
             </div>
           </div>
-          <div className='mr-28'>
-            -
-          </div>
-        </div>
-         
-         
-         <div className='mt-20 flex justify-end'>
-          <button onClick={toggleModal} className="mr-10 bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mt-4">
-              Close
-          </ button>
-          <Link href={"../payment"}>
-          <button onClick={toggleModal} className="mr-10 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mt-4">
-              Confirm
-          </button>
-          </Link>
-         </div>
         </div>
       )}
     </div>
