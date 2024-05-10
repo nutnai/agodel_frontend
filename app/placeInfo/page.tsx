@@ -184,10 +184,10 @@ export default function Placeinfo() {
                 id="name"
                 name="name"
                 onChange={handleChange}
-                // value={
-                //   editablePlace.name ||
-                //   ""
-                // }
+                value={
+                  editablePlace.name ||
+                  ""
+                }
                 readOnly={!isEditable}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
               />
@@ -204,10 +204,10 @@ export default function Placeinfo() {
                 name="address"
                 readOnly={!isEditable}
                 onChange={handleChange}
-                // value={
-                //   editablePlace.address ||
-                //   ""
-                // }
+                value={
+                  editablePlace.address ||
+                  ""
+                }
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
               ></textarea>
             </div>

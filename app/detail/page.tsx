@@ -97,11 +97,11 @@ const Detail = () => {
         </div>
       </div>
       <PictureBox images={images} />
-      {/* <HotelDetail
+      <HotelDetail
         facilities={[roomDetail.facility]}
         guests={[roomDetail.numberPeople]}
         prices={[roomDetail.price]}
-      /> */}
+      />
       
     </div>
     <Footer />
